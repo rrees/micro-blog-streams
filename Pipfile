@@ -10,6 +10,9 @@ gunicorn = "*"
 redis = "*"
 Flask = "*"
 Flask-SSLify = "*"
+nomad = "*"
+dataset = "*"
+psycopg2-binary = "*"
 
 [requires]
 python_version = "3.7"
