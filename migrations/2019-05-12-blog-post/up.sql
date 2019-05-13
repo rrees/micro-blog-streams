@@ -16,4 +16,4 @@ BEGIN
 END;
 $$ language 'plpgsql';
 
-CREATE TRIGGER update_blogpost_modtime BEFORE UPDATE ON blogpost FOR EACH ROW EXECUTE PROCEDURE  update_modified_column();
+CREATE TRIGGER update_blogpost_modtime BEFORE UPDATE ON blog FOR EACH ROW EXECUTE PROCEDURE  update_modified_column();
