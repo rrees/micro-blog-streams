@@ -5,6 +5,32 @@
 
 {% block content %}
 <div class="container-fluid">
-    <p><em>Hello</em> <strong>world</strong></p>
+    <h1>Micro blog streams</h1>
+
+    <form action="{{ url_for('login_form') }}" method="POST">
+    	<div class="form-group">
+    		<label for="email">Email</label>
+    		<input
+    			id="email"
+    			type="email"
+    			name="email"
+    			required
+    			class="form-control">
+    	</div>
+
+    	<div class="form-group">
+    		<label for="email">Password</label>
+    		<input
+    			id="password"
+    			type="password"
+    			name="password"
+    			required
+    			class="form-control">
+    	</div>
+
+    	<div class="form-group">
+    		<button class="btn btn-primary" type="submit">Login</button>
+    	</div>
+    </form>
 </div>
 {% endblock %}
