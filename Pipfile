@@ -12,8 +12,8 @@ Flask = "*"
 Flask-SSLify = "*"
 nomad = "*"
 dataset = "*"
-psycopg2-binary = "*"
 wtforms = "*"
+psycopg2 = "*"
 
 [requires]
 python_version = "3.7"
