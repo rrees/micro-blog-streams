@@ -1,10 +1,8 @@
-import os
-
-import dataset
-
 from app import models
 
-db = dataset.connect(os.environ["DATABASE_URL"])
+from .db import connection
+
+db = connection
 table = db['topic']
 
 def topic_mapper(topic):
@@ -21,3 +19,9 @@ def create(topic_name):
 
 def all():
 	return [topic_mapper(r) for r in table]
+
+def update(topic):
+	with db as tx:
+		tx['topic'].update(topic, ['id'])
+		return tx['topic'].find_one(id=topic['id'])
+
