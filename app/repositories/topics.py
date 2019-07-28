@@ -14,8 +14,7 @@ def topic_mapper(topic):
 		tags = topic['tags'])
 
 def create(topic_name):
-	table.insert({"title": topic_name})
-	return topic_name
+	return table.insert({"title": topic_name})
 
 def all():
 	return [topic_mapper(r) for r in table]
