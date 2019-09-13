@@ -26,13 +26,23 @@ def latest():
 		in table.find(_limit=20, order_by='updated')
 	]
 
-def create(title, content, tags=None):
+def create(title, content, tags=None, topic_id=None):
 	with connect() as tx:
 		post_data = {"title": title, "content": content}
 
 		if tags:
 			post_data['tags'] = tags
-		return tx[TABLENAME].insert(post_data)
+
+		post_id = tx[TABLENAME].insert(post_data)
+
+		if topic_id:
+			topic_posts = tx['topic_posts']
+			topic_posts.insert({
+				'blog_post_id': post_id,
+				'topic_id': topic_id,
+				})
+
+		return post_id
 
 def read(post_id):
 	db = connect()
