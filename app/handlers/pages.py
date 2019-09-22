@@ -15,3 +15,9 @@ def recent_posts():
 	return flask.render_template('recent.html',
 		recent_posts = repositories.posts.latest()
 		)
+
+@login_required
+def topics():
+	return flask.render_template('topics.html',
+		recent_posts = repositories.topics.all()
+		)
