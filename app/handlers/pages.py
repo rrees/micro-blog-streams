@@ -19,5 +19,5 @@ def recent_posts():
 @login_required
 def topics():
 	return flask.render_template('topics.html',
-		recent_posts = repositories.topics.all()
+		topics = repositories.topics.all()
 		)

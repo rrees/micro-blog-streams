@@ -3,5 +3,14 @@
 {% block content %}
 <div class="container-fluid">
     <h1>Topics</h1>
+
+    {% if topics %}
+    <ul>
+    	{% for topic in topics %}
+    	<li><a href="/topic/{{topic.id}}">{{topic.title}}</a></li>
+    	{% endfor %}
+    </ul>
+    {% endif %}
+
 </div>
 {% endblock %}
