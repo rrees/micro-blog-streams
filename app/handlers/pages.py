@@ -21,3 +21,10 @@ def topics():
 	return flask.render_template('topics.html',
 		topics = repositories.topics.all()
 		)
+
+
+@login_required
+def topic(topic_id):
+	return flask.render_template('topic.html',
+		topic = repositories.topics.topic(topic_id)
+		)

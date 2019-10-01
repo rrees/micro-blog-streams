@@ -17,3 +17,5 @@ def update(topic):
 		tx['topic'].update(topic, ['id'])
 		return tx['topic'].find_one(id=topic['id'])
 
+def topic(topic_id):
+	return mappers.topic_mapper(table.find_one(id=topic_id))
