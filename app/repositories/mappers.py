@@ -7,4 +7,5 @@ def topic_mapper(topic):
 	return models.Topic(
 		id = topic['id'],
 		title = topic['title'],
-		tags = topic['tags'])
+		tags = topic['tags'],
+		updated = topic['updated'] if 'updated' in topic else None)

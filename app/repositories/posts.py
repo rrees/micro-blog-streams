@@ -2,6 +2,9 @@ from app import models
 
 from .db import connection, connect
 
+from . import mappers
+from . import queries
+
 TABLENAME = "blogpost"
 
 db = connection
@@ -14,7 +17,8 @@ def post_mapper(post):
 		id = post['id'],
 		title = post['title'],
 		content = post['content'],
-		tags = post['tags'])
+		tags = post['tags'],
+		updated = post['updated'])
 
 def all():
 	return [post_mapper(r) for r in table]
@@ -47,3 +51,6 @@ def create(title, content, tags=None, topic_id=None):
 def read(post_id):
 	db = connect()
 	return db[TABLENAME].find_one(id=post_id)
+
+def recent():
+	return queries.read(table.find(order_by=['-updated']), post_mapper)

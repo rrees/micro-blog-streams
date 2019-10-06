@@ -8,7 +8,8 @@ def front_page():
 
 @login_required
 def home():
-	return flask.render_template('home.html')
+	recent_posts = repositories.posts.recent()
+	return flask.render_template('home.html', recent_posts=recent_posts)
 
 @login_required
 def recent_posts():

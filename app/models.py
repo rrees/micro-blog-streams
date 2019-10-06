@@ -1,5 +1,7 @@
 from typing import NamedTuple, List
 
+from datetime import datetime
+
 class Topic(NamedTuple):
 	id: int
 	title: str
@@ -10,3 +12,4 @@ class BlogPost(NamedTuple):
 	title: str
 	content: str
 	tags: List[str]
+	updated: datetime
