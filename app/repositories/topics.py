@@ -19,4 +19,3 @@ def update(topic):
 
 def topic(topic_id):
 	return mappers.topic_mapper(table.find_one(id=topic_id))
-

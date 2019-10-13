@@ -48,7 +48,7 @@ def create(title, content, tags=None, topic_id=None):
 
 		return post_id
 
-def read(post_id):
+def post(post_id):
 	db = connect()
 	return db[TABLENAME].find_one(id=post_id)
 

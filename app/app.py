@@ -29,6 +29,7 @@ routes = [
 	('/recent', 'recent', handlers.pages.recent_posts, ['GET']),
 	('/topics', 'topics', handlers.pages.topics, ['GET']),
 	('/topic/<topic_id>', 'topic', handlers.pages.topic, ['GET']),
+	('/post/<post_id>', 'post', handlers.pages.post, ['GET']),
 ]
 
 routes = routes + auth_routes
