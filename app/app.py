@@ -29,6 +29,8 @@ routes = [
 	('/recent', 'recent', handlers.pages.recent_posts, ['GET']),
 	('/topics', 'topics', handlers.pages.topics, ['GET']),
 	('/topic/<topic_id>', 'topic', handlers.pages.topic, ['GET']),
+	('/posts/new', 'new_post', handlers.pages.new_post, ['GET']),
+	('/forms/post/new', 'new_post_form', handlers.forms.new_post, ['POST']),
 	('/post/<post_id>', 'post', handlers.pages.post, ['GET']),
 ]
 
