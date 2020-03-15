@@ -10,4 +10,5 @@ def new_post():
 
 	if new_post_form.validate():
 		# return flask.redirect(url_for('post', post_id=new_post_id))
+		new_post = posts_repository.create(new_post_form.title.data, new_post_form.content.data)
 		return flask.redirect(flask.url_for('recent'))
