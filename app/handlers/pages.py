@@ -9,7 +9,10 @@ def front_page():
 @login_required
 def home():
 	recent_posts = repositories.posts.recent()
-	return flask.render_template('home.html', recent_posts=recent_posts)
+	topics = repositories.topics.all()
+	return flask.render_template('home.html',
+		recent_posts=recent_posts,
+		topics=topics)
 
 @login_required
 def recent_posts():

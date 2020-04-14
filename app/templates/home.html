@@ -13,5 +13,15 @@
     	{% endfor %}
     </ul>
     {% endif %}
+
+    {% if topics %}
+    <h2>Topics</h2>
+
+    <ul>
+    	{% for topic in topics %}
+    	<li><a href="/topic/{{topic.id}}">{{topic.title}}</a></li>
+    	{% endfor %}
+    </ul>
+    {% endif %}
 </div>
 {% endblock %}

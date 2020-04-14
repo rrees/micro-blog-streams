@@ -6,6 +6,7 @@ class Topic(NamedTuple):
 	id: int
 	title: str
 	tags: List[str]
+	updated: datetime
 
 class BlogPost(NamedTuple):
 	id: int

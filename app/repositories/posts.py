@@ -27,7 +27,7 @@ def latest():
 	return [
 		post_mapper(r)
 		for r
-		in table.find(_limit=20, order_by='updated')
+		in table.find(_limit=20, order_by='-updated')
 	]
 
 def create(title, content, tags=None, topic_id=None):
