@@ -19,7 +19,7 @@
 
     <ul>
     	{% for topic in topics %}
-    	<li><a href="/topic/{{topic.id}}">{{topic.title}}</a></li>
+    	<li><a href="/topic/{{topic.id}}">{{topic.title}}  ({{topic.updated}})}</a></li>
     	{% endfor %}
     </ul>
     {% endif %}

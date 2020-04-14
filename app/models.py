@@ -5,6 +5,7 @@ from datetime import datetime
 class Topic(NamedTuple):
 	id: int
 	title: str
+	description: str
 	tags: List[str]
 	updated: datetime
 
