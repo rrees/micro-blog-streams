@@ -1,13 +1,17 @@
 {% extends 'default.html' %}
 
+{% block title %}{{topic.title}} | Topic {% endblock %}
+
 {% block content %}
 <div class="container-fluid">
     <h1>{{topic.title}}</h1>
 
     <h2>Write a new post</h2>
-    
+
     {% include 'posts/fragments/new-post-form.html' %}
 
+    <h2>Recent posts on {{topic.title}}</h2>
 
+    {% include 'posts/fragments/recent-posts.html' %}
 </div>
 {% endblock %}

@@ -9,6 +9,7 @@ TABLENAME = "blogpost"
 
 db = connection
 table = db[TABLENAME]
+topic_posts = db["topic_posts"]
 
 def post_mapper(post):
 	if not post:
@@ -54,3 +55,7 @@ def post(post_id):
 
 def recent():
 	return queries.read(table.find(order_by=['-updated']), post_mapper)
+
+def by_topic(topic_id, recent=True):
+	matching_posts = topic_posts.find(topic_id=topic_id)
+	return [post_mapper(table.find_one(id=mp['blog_post_id'])) for mp in matching_posts]

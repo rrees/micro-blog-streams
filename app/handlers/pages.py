@@ -30,7 +30,8 @@ def topics():
 @login_required
 def topic(topic_id):
 	return flask.render_template('topic.html',
-		topic = repositories.topics.topic(topic_id)
+		topic = repositories.topics.topic(topic_id),
+		recent_posts=repositories.posts.by_topic(topic_id)
 		)
 
 

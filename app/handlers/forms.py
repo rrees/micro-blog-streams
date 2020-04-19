@@ -11,10 +11,17 @@ def new_post():
 
 	if new_post_form.validate():
 		# return flask.redirect(url_for('post', post_id=new_post_id))
+
+		topic_id = new_post_form.topic_id.data
+
 		new_post = posts_repository.create(
 			new_post_form.title.data,
 			new_post_form.content.data,
-			topic_id=new_post_form.topic_id.data)
+			topic_id=topic_id)
+
+		if topic_id:
+			return flask.redirect(flask.url_for('topic', topic_id=topic_id))
+
 		return flask.redirect(flask.url_for('recent'))
 
 @login_required
