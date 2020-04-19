@@ -6,8 +6,13 @@ from . import mappers, queries
 db = connection
 table = db['topic']
 
-def create(topic_name):
-	return table.insert({"title": topic_name})
+def create(topic_name, description=None):
+	new_topic = {"title": topic_name}
+
+	if description:
+		new_topic['description'] = description
+
+	return table.insert(new_topic)
 
 def all():
 	return queries.read(table, mappers.topic_mapper)

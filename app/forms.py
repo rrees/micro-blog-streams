@@ -6,3 +6,9 @@ class NewPost(Form):
 		[validators.InputRequired()])
 	content = fields.TextAreaField('Content',
 		[validators.InputRequired()])
+
+
+class NewTopic(Form):
+	title = fields.StringField('Title',
+		[validators.InputRequired()])
+	description = fields.StringField('Description', [])

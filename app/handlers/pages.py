@@ -43,3 +43,8 @@ def post(post_id):
 @login_required
 def new_post():
 	return flask.render_template('posts/new.html')
+
+
+@login_required
+def new_topic():
+	return flask.render_template('topics/new.html')
