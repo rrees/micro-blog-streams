@@ -6,6 +6,7 @@ class NewPost(Form):
 		[validators.InputRequired()])
 	content = fields.TextAreaField('Content',
 		[validators.InputRequired()])
+	topic_id = fields.IntegerField()
 
 
 class NewTopic(Form):
