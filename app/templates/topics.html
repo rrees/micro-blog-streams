@@ -1,8 +1,12 @@
 {% extends 'default.html' %}
 
+{% block title %}Topics{% endblock %}
+
 {% block content %}
 <div class="container-fluid">
     <h1>Topics</h1>
+
+    <p><a href="{{url_for('new_topic')}}">Create new topic</a></p>
 
     {% if topics %}
     <ul>
