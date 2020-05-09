@@ -15,6 +15,7 @@ nomad = "*"
 dataset = "*"
 wtforms = "*"
 psycopg2 = "*"
+mistune = "*"
 
 [requires]
 python_version = "3.7"

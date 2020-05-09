@@ -8,6 +8,7 @@ from flask_sslify import SSLify
 from . import handlers
 from . import redis_utils
 from .auth_password.routes import auth_routes
+from .filters import custom_filters
 
 ENV = os.environ.get("ENV", "PROD")
 
@@ -40,6 +41,10 @@ routes = routes + auth_routes
 
 for path, endpoint, handler, methods in routes:
 	app.add_url_rule(path, endpoint, handler, methods=methods)
+
+for name, custom_filter in custom_filters:
+	app.jinja_env.filters[name] = custom_filter
+
 
 @app.errorhandler(500)
 def server_error(e):
