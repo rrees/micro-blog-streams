@@ -35,6 +35,8 @@ routes = [
 	('/posts/new', 'new_post', handlers.pages.new_post, ['GET']),
 	('/forms/post/new', 'new_post_form', handlers.forms.new_post, ['POST']),
 	('/post/<post_id>', 'post', handlers.pages.post, ['GET']),
+	('/post/<post_id>/edit', 'edit_post', handlers.pages.edit_post, ['GET']),
+	('/forms/post/<post_id>/edit', 'edit_post_form', handlers.forms.edit_post, ['POST']),
 ]
 
 routes = routes + auth_routes

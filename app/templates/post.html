@@ -9,5 +9,9 @@
 
 	{{post.content | markdown | safe}}
 
+	<div>
+		<a href="{{url_for('edit_post', post_id=post.id)}}">Edit this post</a>
+	</div>
+
 </div>
 {% endblock %}

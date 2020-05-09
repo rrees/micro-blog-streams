@@ -34,3 +34,7 @@ def new_topic():
 			new_topic_form.description.data,
 		)
 		return flask.redirect(flask.url_for('topics'))
+
+@login_required
+def edit_post(post_id):
+	return flask.redirect(flask.url_for('post', post_id=post_id))

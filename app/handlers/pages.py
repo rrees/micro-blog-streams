@@ -49,3 +49,10 @@ def new_post():
 @login_required
 def new_topic():
 	return flask.render_template('topics/new.html')
+
+@login_required
+def edit_post(post_id):
+	return flask.render_template(
+		'posts/edit.html',
+		post = repositories.posts.post(post_id)
+	)
