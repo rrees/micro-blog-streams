@@ -16,7 +16,7 @@
 		<textarea
 			id="content"
 			name="content" rows="3" class="form-control"
-			required>{%if post.content %}{{post.content}}{% endif %}</textarea>
+			required>{%if post and post.content %}{{post.content}}{% endif %}</textarea>
 	</div>
 
 

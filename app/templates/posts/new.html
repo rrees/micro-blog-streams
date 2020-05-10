@@ -6,9 +6,6 @@
 <div class="container-fluid">
     <h1>New post</h1>
 
-    <form method="POST" action="{{url_for('new_post_form')}}">
-
-    {% include 'posts/fragments/post-form.html' %}
-
-	</form>
+	{% include 'posts/fragments/new-post-form.html' %}
+	
 {% endblock %}

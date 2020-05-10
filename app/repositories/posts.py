@@ -57,6 +57,7 @@ def recent():
 	return queries.read(table.find(order_by=['-updated']), post_mapper)
 
 def by_topic(topic_id, recent=True):
+	query = "SELECT * from blog_post INNER JOIN topic_posts ON blog_post_id = id WHERE topic_id = ? ORDER BY updated"
 	matching_posts = topic_posts.find(topic_id=topic_id)
 	return [post_mapper(table.find_one(id=mp['blog_post_id'])) for mp in matching_posts]
 
