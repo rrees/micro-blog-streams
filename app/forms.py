@@ -1,7 +1,7 @@
 from wtforms import Form, validators
 from wtforms import fields
 
-class NewPost(Form):
+class Post(Form):
 	title = fields.StringField('Title',
 		[validators.InputRequired()])
 	content = fields.TextAreaField('Content',

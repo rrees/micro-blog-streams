@@ -7,7 +7,7 @@ from app.repositories import topics as topics_repository
 
 @login_required
 def new_post():
-	new_post_form = forms.NewPost(flask.request.form)
+	new_post_form = forms.Post(flask.request.form)
 
 	if new_post_form.validate():
 		# return flask.redirect(url_for('post', post_id=new_post_id))
@@ -37,4 +37,13 @@ def new_topic():
 
 @login_required
 def edit_post(post_id):
-	return flask.redirect(flask.url_for('post', post_id=post_id))
+	edit_post_form = forms.Post(flask.request.form)
+	if edit_post_form.validate():
+		update_data = {
+			'id': post_id,
+			'content': edit_post_form.content.data,
+		}
+		posts_repository.update_post(update_data)
+		return flask.redirect(flask.url_for('post', post_id=post_id))
+
+	flask.abort(400, "Form information was invalid")

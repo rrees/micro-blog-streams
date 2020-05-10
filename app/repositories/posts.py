@@ -59,3 +59,8 @@ def recent():
 def by_topic(topic_id, recent=True):
 	matching_posts = topic_posts.find(topic_id=topic_id)
 	return [post_mapper(table.find_one(id=mp['blog_post_id'])) for mp in matching_posts]
+
+def update_post(new_post_data):
+
+	with connect() as tx:
+		table.update(new_post_data, ['id'])
