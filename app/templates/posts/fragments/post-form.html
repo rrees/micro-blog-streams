@@ -5,7 +5,9 @@
 			type="text"
 			name="title"
 			class="form-control"
+			{% if title_required %}
 			required
+			{% endif %}
             {% if post and post.title %}
             value="{{post.title}}"
             {% endif %}

@@ -14,8 +14,8 @@ def create(topic_name, description=None):
 
 	return table.insert(new_topic)
 
-def all():
-	return queries.read(table, mappers.topic_mapper)
+def all(order_by=None):
+	return queries.read(table.all(order_by='title'), mappers.topic_mapper)
 
 def update(topic):
 	with db as tx:
