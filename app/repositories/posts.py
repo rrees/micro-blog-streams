@@ -60,7 +60,6 @@ def by_topic(topic_id, recent=True):
 	query = "SELECT * from blogpost INNER JOIN topic_posts ON blog_post_id = id WHERE topic_id = :topic_id ORDER BY updated DESC"
 
 	with connect() as db:
-		print([row for row in db.query(query, topic_id=topic_id)])
 		return map(post_mapper, db.query(query, topic_id=topic_id))
 		#return [post_mapper(table.find_one(id=pid)) for pid in db.query(query, topic_id)]
 
