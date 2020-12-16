@@ -41,6 +41,7 @@ def edit_post(post_id):
 	if edit_post_form.validate():
 		update_data = {
 			'id': post_id,
+			'title': edit_post_form.title.data,
 			'content': edit_post_form.content.data,
 		}
 		posts_repository.update_post(update_data)
