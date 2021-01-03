@@ -10,7 +10,7 @@
 
     <ul>
     	{% for post in recent_posts %}
-    	<li><a href="/post/{{post.id}}">{{post.title}}</a> ({{post.updated}})</li>
+    	<li><a href="/post/{{post.id}}">{{post.title}}</a> ({{post.updated | iso_date}})</li>
     	{% endfor %}
     </ul>
     {% endif %}

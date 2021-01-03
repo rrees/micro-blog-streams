@@ -11,7 +11,7 @@
 
     <ul>
     	{% for post in recent_posts %}
-    	<li><a href="/post/{{post.id}}">{{post.title}}</a> ({{post.updated}})</li>
+    	<li><a href="/post/{{post.id}}">{{post.title}}</a> ({{post.updated | iso_date}})</li>
     	{% endfor %}
     </ul>
     {% endif %}
@@ -21,7 +21,7 @@
 
     <ul>
     	{% for topic in topics %}
-    	<li><a href="/topic/{{topic.id}}">{{topic.title}}  ({{topic.updated}})</a></li>
+    	<li><a href="/topic/{{topic.id}}">{{topic.title}}  ({{topic.updated | iso_date}})</a></li>
     	{% endfor %}
     </ul>
     {% endif %}
