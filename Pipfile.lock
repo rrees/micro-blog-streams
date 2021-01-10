@@ -39,11 +39,11 @@
         },
         "dataset": {
             "hashes": [
-                "sha256:97902a3d4d62a506c74904fa7c2512a982f12f9892786f2e77b2cdfbd9f72388",
-                "sha256:b6b93662e4fb4240d4d68da4156b7b0713cd3d639455d9c2411636ad0ead59de"
+                "sha256:5dcaf2c9eddf05629b4d7841a97ba6311c4c17153af7b4c685fe6955fc3843d1",
+                "sha256:6aff0f0c6f2884250477989b7ede0be7ecc3bc400fa4e3cc6d5e7ac652bae759"
             ],
             "index": "pypi",
-            "version": "==1.4.1"
+            "version": "==1.4.3"
         },
         "flask": {
             "hashes": [

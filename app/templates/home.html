@@ -6,24 +6,30 @@
 <div class="container-fluid">
     <h1>Home</h1>
 
-    {% if recent_posts %}
-    <h2>Posts</h2>
+    <div class="home-page-summaries">
+        {% if recent_posts %}
 
-    <ul>
-    	{% for post in recent_posts %}
-    	<li><a href="/post/{{post.id}}">{{post.title}}</a> ({{post.updated | iso_date}})</li>
-    	{% endfor %}
-    </ul>
-    {% endif %}
+        {% if topics %}
+        <div class="home-page-summaries--topics">
+            <h2>Topics</h2>
 
-    {% if topics %}
-    <h2>Topics</h2>
+            <ul>
+            	{% for topic in topics %}
+            	<li><a href="/topic/{{topic.id}}">{{topic.title}}  ({{topic.updated | iso_date}})</a></li>
+            	{% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+        <div class="home-page-summaries--posts">
+            <h2>Posts</h2>
 
-    <ul>
-    	{% for topic in topics %}
-    	<li><a href="/topic/{{topic.id}}">{{topic.title}}  ({{topic.updated | iso_date}})</a></li>
-    	{% endfor %}
-    </ul>
-    {% endif %}
+            <ul>
+                {% for post in recent_posts %}
+                <li><a href="/post/{{post.id}}">{{post.title}}</a> ({{post.updated | iso_date}})</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
 </div>
 {% endblock %}

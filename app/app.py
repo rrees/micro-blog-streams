@@ -19,6 +19,12 @@ redis = redis_utils.setup_redis(redis_url) if redis_url else None
 app = flask.Flask(__name__)
 app.secret_key = os.environ.get("SECRET_KEY", os.urandom(24))
 
+app.config.update(
+    SESSION_COOKIE_SECURE=True,
+    SESSION_COOKIE_HTTPONLY=True,
+    SESSION_COOKIE_SAMESITE='Strict',
+)
+
 if not ENV == "DEV":
     sslify = SSLify(app)
 

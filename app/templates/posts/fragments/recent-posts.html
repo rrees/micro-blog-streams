@@ -8,7 +8,7 @@
 			{{post.content | markdown | safe}}
 
 		</details>
-		<p>Actions: <a href="/post/{{post.id}}">View</a> <a href="{{url_for('edit_post', post_id=post.id)}}">Edit</a> ({{post.updated | iso_date}})</p>
+		<p>Actions: <a href="{{url_for('post', post_id=post.id)}}">View</a> <a href="{{url_for('edit_post', post_id=post.id)}}">Edit</a> ({{post.updated | iso_date}})</p>
 	</li>
 	{% endfor %}
 </ol>
