@@ -1,7 +1,15 @@
 {% if recent_posts %}
-<ul>
+<ol>
 	{% for post in recent_posts %}
-	<li><a href="/post/{{post.id}}">{{post.title}}</a> ({{post.updated}})</li>
+	<li>
+		<details>
+			<summary>{{post.title}}</summary>
+			
+			{{post.content | markdown | safe}}
+
+		</details>
+		<p>Actions: <a href="/post/{{post.id}}">View</a> <a href="{{url_for('edit_post', post_id=post.id)}}">Edit</a> ({{post.updated | iso_date}})</p>
+	</li>
 	{% endfor %}
-</ul>
+</ol>
 {% endif %}
