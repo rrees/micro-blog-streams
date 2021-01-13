@@ -9,11 +9,11 @@
     <p><a href="{{url_for('new_topic')}}">Create new topic</a></p>
 
     {% if topics %}
-    <ul>
+    <ol class="topic-list">
     	{% for topic in topics %}
-    	<li><a href="/topic/{{topic.id}}">{{topic.title}}</a></li>
+    	<li class="mr-5 mb-3"><a href="/topic/{{topic.id}}">{{topic.title}}</a></li>
     	{% endfor %}
-    </ul>
+    </ol>
     {% endif %}
 
 </div>
