@@ -38,7 +38,8 @@ def topic(topic_id):
 @login_required
 def post(post_id):
 	return flask.render_template('post.html',
-		post = repositories.posts.post(post_id)
+		post = repositories.posts.post(post_id),
+		topics= repositories.topics.for_post(post_id),
 		)
 
 @login_required

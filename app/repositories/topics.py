@@ -26,4 +26,6 @@ def topic(topic_id):
 	return mappers.topic_mapper(table.find_one(id=topic_id))
 
 def for_post(post_id):
-	pass
+	with db as tx:
+		topic_links = tx['topic_posts'].find(blog_post_id=post_id)
+		return [topic(topic_link['topic_id']) for topic_link in topic_links]
