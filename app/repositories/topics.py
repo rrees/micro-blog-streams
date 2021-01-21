@@ -1,5 +1,5 @@
 
-from .db import connection
+from .db import connection, connect
 
 from . import mappers, queries
 
@@ -12,7 +12,8 @@ def create(topic_name, description=None):
 	if description:
 		new_topic['description'] = description
 
-	return table.insert(new_topic)
+	with connect() as tx:
+		return tx['topic'].insert(new_topic)
 
 def all(order_by=None):
 	return queries.read(table.all(order_by='title'), mappers.topic_mapper)
@@ -29,3 +30,10 @@ def for_post(post_id):
 	with db as tx:
 		topic_links = tx['topic_posts'].find(blog_post_id=post_id)
 		return [topic(topic_link['topic_id']) for topic_link in topic_links]
+
+def delete(topic_id):
+	with db as tx:
+		tx['topic_posts'].delete(topic_id=topic_id)
+		tx['topic'].delete(id=topic_id)
+
+		return topic_id
