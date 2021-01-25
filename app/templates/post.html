@@ -16,6 +16,18 @@
 		{{post.content | markdown | safe}}
 	</div>
 
+	{% if post.url %}
+	<div class="post-url">
+		<p><a href="{{post.url}}">{{post.url}}</a></p>
+	</div>
+	{% endif %}
+
+	{% if post.tags %}
+	<div class="post-tags">
+		<p>{{post.tags | join(' ')}}</p>
+	</div>
+	{% endif %}
+
 	<div class="post-content mb-5">
 		<details>
 			<summary>Raw content</summary>

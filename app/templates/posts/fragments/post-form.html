@@ -23,6 +23,27 @@
 			required>{%if post and post.content %}{{post.content}}{% endif %}</textarea>
 	</div>
 
+	<div class="form-group">
+		<label for="tags">Tags</label>
+		<input
+			type="text"
+			id="tags"
+			name="tags"
+			class="form-control"
+			{% if post and post.tags %}value="{{post.tags | join(' ')}}"{% endif %}
+			>
+	</div>
+
+	<div class="form-group">
+		<label for="url">URL</label>
+		<input
+			type="text"
+			id="url"
+			name="url"
+			class="form-control"
+			{% if post and post.url %}value="{{post.url}}"{% endif %}
+			>
+	</div>
 
     {% if topic %}
     <input type="hidden" name="topic_id" value="{{topic.id}}">
