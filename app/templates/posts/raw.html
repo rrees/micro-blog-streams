@@ -5,11 +5,11 @@
 
 {% block content %}
 <div class="container-fluid">
-    <h1>Edit post: {{post.title}}</h1>
+    <h1>Post: {{post.title}}</h1>
 
 	{% include "posts/fragments/post-actions.html" %}
 
-    <form method="POST" action="{{url_for('edit_post_form', post_id=post.id)}}">
-    {% include 'posts/fragments/post-form.html' %}
-	</form>
+  	<textarea class="w-100" rows="10">{{post.content}}</textarea>
+
+  </div>
 {% endblock %}

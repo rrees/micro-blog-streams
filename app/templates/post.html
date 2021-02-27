@@ -8,9 +8,7 @@
     <h1>{{post.title}}</h1>
 
 
-	<div class="post-actions mb-3">
-		<a href="{{url_for('edit_post', post_id=post.id)}}">Edit this post</a>
-	</div>
+	{% include "posts/fragments/post-actions.html" %}
 
 	<div class="post-content mb-5">
 		{{post.content | markdown | safe}}
@@ -28,13 +26,6 @@
 	</div>
 	{% endif %}
 
-	<div class="post-content mb-5">
-		<details>
-			<summary>Raw content</summary>
-			<textarea>{{post.content}}</textarea>
-		</details>
-	</div>
-
 	{% if topics %}
 	<div class="post-topics">
 		<ul class="post-topics--list">
@@ -44,7 +35,6 @@
 		</ul>
 	</div>
 	{% endif %}
-
 
 </div>
 {% endblock %}

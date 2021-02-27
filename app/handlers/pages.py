@@ -57,3 +57,9 @@ def edit_post(post_id):
 		'posts/edit.html',
 		post = repositories.posts.post(post_id)
 	)
+
+@login_required
+def post_raw(post_id):
+	return flask.render_template(
+		'posts/raw.html',
+		post=repositories.posts.post(post_id))
