@@ -31,12 +31,15 @@ def latest():
 		in table.find(_limit=20, order_by='-updated')
 	]
 
-def create(title, content, tags=None, topic_id=None):
+def create(title, content, tags=None, topic_id=None, url=None):
 	with connect() as tx:
 		post_data = {"title": title, "content": content}
 
 		if tags:
 			post_data['tags'] = tags
+
+		if url:
+			post_data['url'] = url
 
 		post_id = tx[TABLENAME].insert(post_data)
 

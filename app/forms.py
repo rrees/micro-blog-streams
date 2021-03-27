@@ -7,6 +7,7 @@ class Post(Form):
 	content = fields.TextAreaField('Content',
 		[validators.InputRequired()])
 	topic_id = fields.IntegerField()
+	url = fields.StringField('URL', [validators.Optional()])
 
 
 class NewTopic(Form):

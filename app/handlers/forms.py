@@ -44,6 +44,10 @@ def edit_post(post_id):
 			'title': edit_post_form.title.data,
 			'content': edit_post_form.content.data,
 		}
+
+		if edit_post_form.url.data:
+			update_data['url'] = edit_post_form.url.data
+
 		posts_repository.update_post(update_data)
 		return flask.redirect(flask.url_for('post', post_id=post_id))
 
