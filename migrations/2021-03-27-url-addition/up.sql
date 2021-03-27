@@ -1,0 +1,3 @@
+
+ALTER TABLE blogpost
+ADD COLUMN url TEXT;	
