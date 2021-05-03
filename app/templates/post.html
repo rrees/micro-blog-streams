@@ -22,12 +22,14 @@
 
 	{% if post.tags %}
 	<div class="post-tags">
-		<p>{{post.tags | join(' ')}}</p>
+		<p><strong>Tags:</strong> {{post.tags | join(' ')}}</p>
 	</div>
 	{% endif %}
 
 	{% if topics %}
 	<div class="post-topics">
+		<h3>Topics</h3>
+
 		<ul class="post-topics--list">
 			{% for topic in topics %}
 			<li><a href="{{url_for('topic', topic_id=topic.id)}}">{{topic.title}}</a></li>

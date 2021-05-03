@@ -1,5 +1,7 @@
 import flask
 
+from rrees_tag_manager import tags as tag_manager
+
 from app.auth_password.decorators import login_required
 from app import forms
 from app.repositories import posts as posts_repository
@@ -13,11 +15,13 @@ def new_post():
 		# return flask.redirect(url_for('post', post_id=new_post_id))
 
 		topic_id = new_post_form.topic_id.data
+		tags = tag_manager.process(new_post_form.tags.data)
 
 		new_post = posts_repository.create(
 			new_post_form.title.data,
 			new_post_form.content.data,
-			topic_id=topic_id)
+			topic_id=topic_id,
+			tags=tags)
 
 		if topic_id:
 			return flask.redirect(flask.url_for('topic', topic_id=topic_id))
@@ -43,6 +47,7 @@ def edit_post(post_id):
 			'id': post_id,
 			'title': edit_post_form.title.data,
 			'content': edit_post_form.content.data,
+			'tags': tag_manager.process(edit_post_form.tags.data),
 		}
 
 		if edit_post_form.url.data:
