@@ -11,7 +11,7 @@ class Post(Form):
 	tags = fields.StringField('Tags', [validators.Optional()])
 
 
-class NewTopic(Form):
+class Topic(Form):
 	title = fields.StringField('Title',
 		[validators.InputRequired()])
 	description = fields.StringField('Description', [])

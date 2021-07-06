@@ -1,0 +1,23 @@
+	<div class="form-group">
+		<label for="title">Title</label>
+		<input
+			id="title"
+			type="text"
+			name="title"
+			class="form-control"
+            {% if topic and topic.title %}
+            value="{{topic.title}}"
+            {% endif %}
+			required>
+	</div>
+	<div class="form-group">
+		<label for="description">Description</label>
+		<input
+            id="description"
+            name="description"
+            class="form-control"
+            {% if topic and topic.description %}
+            value="{{topic.description}}"
+            {% endif %}
+            >
+	</div>

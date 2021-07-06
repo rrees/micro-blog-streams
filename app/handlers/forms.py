@@ -7,53 +7,71 @@ from app import forms
 from app.repositories import posts as posts_repository
 from app.repositories import topics as topics_repository
 
+
 @login_required
 def new_post():
-	new_post_form = forms.Post(flask.request.form)
+    new_post_form = forms.Post(flask.request.form)
 
-	if new_post_form.validate():
-		# return flask.redirect(url_for('post', post_id=new_post_id))
+    if new_post_form.validate():
+        # return flask.redirect(url_for('post', post_id=new_post_id))
 
-		topic_id = new_post_form.topic_id.data
-		tags = tag_manager.process(new_post_form.tags.data)
+        topic_id = new_post_form.topic_id.data
+        tags = tag_manager.process(new_post_form.tags.data)
 
-		new_post = posts_repository.create(
-			new_post_form.title.data,
-			new_post_form.content.data,
-			topic_id=topic_id,
-			tags=tags)
+        new_post = posts_repository.create(
+            new_post_form.title.data,
+            new_post_form.content.data,
+            topic_id=topic_id,
+            tags=tags,
+        )
 
-		if topic_id:
-			return flask.redirect(flask.url_for('topic', topic_id=topic_id))
+        if topic_id:
+            return flask.redirect(flask.url_for('topic', topic_id=topic_id))
 
-		return flask.redirect(flask.url_for('recent'))
+        return flask.redirect(flask.url_for('recent'))
+
 
 @login_required
 def new_topic():
-	new_topic_form = forms.NewTopic(flask.request.form)
+    new_topic_form = forms.Topic(flask.request.form)
 
-	if new_topic_form.validate():
-		new_topic = topics_repository.create(
-			new_topic_form.title.data,
-			new_topic_form.description.data,
-		)
-		return flask.redirect(flask.url_for('topics'))
+    if new_topic_form.validate():
+        new_topic = topics_repository.create(
+            new_topic_form.title.data, new_topic_form.description.data
+        )
+        return flask.redirect(flask.url_for('topics'))
+
 
 @login_required
 def edit_post(post_id):
-	edit_post_form = forms.Post(flask.request.form)
-	if edit_post_form.validate():
-		update_data = {
-			'id': post_id,
-			'title': edit_post_form.title.data,
-			'content': edit_post_form.content.data,
-			'tags': tag_manager.process(edit_post_form.tags.data),
-		}
+    edit_post_form = forms.Post(flask.request.form)
+    if edit_post_form.validate():
+        update_data = {
+            'id': post_id,
+            'title': edit_post_form.title.data,
+            'content': edit_post_form.content.data,
+            'tags': tag_manager.process(edit_post_form.tags.data),
+        }
 
-		if edit_post_form.url.data:
-			update_data['url'] = edit_post_form.url.data
+        if edit_post_form.url.data:
+            update_data['url'] = edit_post_form.url.data
 
-		posts_repository.update_post(update_data)
-		return flask.redirect(flask.url_for('post', post_id=post_id))
+        posts_repository.update_post(update_data)
+        return flask.redirect(flask.url_for('post', post_id=post_id))
 
-	flask.abort(400, "Form information was invalid")
+    flask.abort(400, "Form information was invalid")
+
+
+@login_required
+def edit_topic(topic_id):
+    edit_topic_form = forms.Topic(flask.request.form)
+    if edit_topic_form.validate():
+        update_data = {'id': topic_id, 'title': edit_topic_form.title.data}
+
+        if edit_topic_form.description.data:
+            update_data['description'] = edit_topic_form.description.data
+
+        topics_repository.update(update_data)
+
+        return flask.redirect(flask.url_for('topic', topic_id=topic_id))
+    flask.abort(400, "Form information incorrect")

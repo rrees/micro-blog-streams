@@ -31,28 +31,40 @@ if not ENV == "DEV":
 logger = app.logger
 
 routes = [
-	('/', 'index', handlers.pages.front_page, ['GET']),
-	('/home', 'home', handlers.pages.home, ['GET']),
-	('/recent', 'recent', handlers.pages.recent_posts, ['GET']),
-	('/topics', 'topics', handlers.pages.topics, ['GET']),
-	('/topic/<topic_id>', 'topic', handlers.pages.topic, ['GET']),
-	('/topics/new', 'new_topic', handlers.pages.new_topic, ['GET']),
-	('/forms/topic/new', 'new_topic_form', handlers.forms.new_topic, ['POST']),
-	('/posts/new', 'new_post', handlers.pages.new_post, ['GET']),
-	('/forms/post/new', 'new_post_form', handlers.forms.new_post, ['POST']),
-	('/post/<post_id>', 'post', handlers.pages.post, ['GET']),
-	('/post/<post_id>/raw', 'post_raw', handlers.pages.post_raw, ['GET']),
-	('/post/<post_id>/edit', 'edit_post', handlers.pages.edit_post, ['GET']),
-	('/forms/post/<post_id>/edit', 'edit_post_form', handlers.forms.edit_post, ['POST']),
+    ('/', 'index', handlers.pages.front_page, ['GET']),
+    ('/home', 'home', handlers.pages.home, ['GET']),
+    ('/recent', 'recent', handlers.pages.recent_posts, ['GET']),
+    ('/topics', 'topics', handlers.pages.topics, ['GET']),
+    ('/topic/<topic_id>', 'topic', handlers.pages.topic, ['GET']),
+    ('/topic/<topic_id>/edit', 'edit_topic', handlers.pages.edit_topic, ['GET']),
+    (
+        '/forms/topic/<topic_id>/edit',
+        'edit_topic_form',
+        handlers.forms.edit_topic,
+        ['POST'],
+    ),
+    ('/topics/new', 'new_topic', handlers.pages.new_topic, ['GET']),
+    ('/forms/topic/new', 'new_topic_form', handlers.forms.new_topic, ['POST']),
+    ('/posts/new', 'new_post', handlers.pages.new_post, ['GET']),
+    ('/forms/post/new', 'new_post_form', handlers.forms.new_post, ['POST']),
+    ('/post/<post_id>', 'post', handlers.pages.post, ['GET']),
+    ('/post/<post_id>/raw', 'post_raw', handlers.pages.post_raw, ['GET']),
+    ('/post/<post_id>/edit', 'edit_post', handlers.pages.edit_post, ['GET']),
+    (
+        '/forms/post/<post_id>/edit',
+        'edit_post_form',
+        handlers.forms.edit_post,
+        ['POST'],
+    ),
 ]
 
 routes = routes + auth_routes
 
 for path, endpoint, handler, methods in routes:
-	app.add_url_rule(path, endpoint, handler, methods=methods)
+    app.add_url_rule(path, endpoint, handler, methods=methods)
 
 for name, custom_filter in custom_filters:
-	app.jinja_env.filters[name] = custom_filter
+    app.jinja_env.filters[name] = custom_filter
 
 
 @app.errorhandler(500)
