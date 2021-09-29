@@ -1,0 +1,45 @@
+
+{% extends 'default.html' %}
+
+{% block title %}Edit post topics for: {{post.title}}{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>Edit topics for: {{post.title}}</h1>
+
+	{% include "posts/fragments/post-actions.html" %}
+
+	<div class="edit-post-topics">
+		<div>
+			<form
+				method="POST"
+				action="{{url_for('add_post_to_topic', post_id=post.id)}}">
+				<div class="form-group">
+					<label>Add to Topic</label>
+					<select name="topic_id">
+						{% for topic in all_topics %}
+						<option value="{{topic.id}}">{{topic.title}}</option>
+						{% endfor %}
+					</select>
+				</div>
+				<div class="form-group">
+					<button type="submit" class="btn btn-primary">Add</button>
+				</div>
+			</form>
+		</div>
+
+		<div>
+			<ul>
+				{% for topic in post_topics %}
+				<li>
+					<form method="POST">
+						<input type="hidden" name="topic_id" value="{{topic.id}}">
+						<span class="mr-3">{{topic.title}}</span>
+						<button type="submit" class="btn btn-sm btn-danger">Delete</button>
+					</form>
+				</li>
+				{% endfor %}
+			</ul>
+		</div>
+	</div>
+{% endblock %}

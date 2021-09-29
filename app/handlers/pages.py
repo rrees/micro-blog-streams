@@ -72,6 +72,16 @@ def edit_post(post_id):
 
 
 @login_required
+def edit_post_topics(post_id):
+    return flask.render_template(
+        'posts/edit-topics.html',
+        post=repositories.posts.post(post_id),
+        post_topics=repositories.topics.for_post(post_id),
+        all_topics=repositories.topics.all(order_by="name"),
+    )
+
+
+@login_required
 def post_raw(post_id):
     return flask.render_template(
         'posts/raw.html', post=repositories.posts.post(post_id)

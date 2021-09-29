@@ -75,3 +75,18 @@ def edit_topic(topic_id):
 
         return flask.redirect(flask.url_for('topic', topic_id=topic_id))
     flask.abort(400, "Form information incorrect")
+
+
+@login_required
+def add_post_to_topic(post_id):
+    topic_id_form = forms.TopicId(flask.request.form)
+
+    if topic_id_form.validate():
+
+        topic_id = topic_id_form.topic_id.data
+
+        topics_repository.add_post_to_topic(post_id, topic_id)
+
+        return flask.redirect(flask.url_for('edit_post_topics', post_id=post_id))
+
+    flask.abort(400, "Form information incorrect")

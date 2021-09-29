@@ -56,6 +56,18 @@ routes = [
         handlers.forms.edit_post,
         ['POST'],
     ),
+    (
+        '/post/<post_id>/topics/edit',
+        'edit_post_topics',
+        handlers.pages.edit_post_topics,
+        ['GET'],
+    ),
+    (
+        '/post/<post_id>/topics/add',
+        'add_post_to_topic',
+        handlers.forms.add_post_to_topic,
+        ['POST'],
+    ),
 ]
 
 routes = routes + auth_routes

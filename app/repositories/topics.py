@@ -41,3 +41,10 @@ def delete(topic_id):
         tx['topic'].delete(id=topic_id)
 
         return topic_id
+
+
+def add_post_to_topic(post_id, topic_id):
+    with db as tx:
+        row = {"blog_post_id": post_id, "topic_id": topic_id}
+        tx['topic_posts'].insert_ignore(row, ["blog_post_id", "topic_id"])
+        return post_id
