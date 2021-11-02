@@ -3,10 +3,12 @@
 {% block title %}Topics{% endblock %}
 
 {% block content %}
-<div class="container-fluid">
+<div class="container-lg">
     <h1>Topics</h1>
 
-    <p><a href="{{url_for('new_topic')}}">Create new topic</a></p>
+    <nav class="nav mb-3">
+        <p class="nav-link"><a href="{{url_for('new_topic')}}">Create new topic</a></p>
+    </nav>
 
     {% if topics %}
     <ol class="topic-list">

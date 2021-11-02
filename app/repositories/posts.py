@@ -28,8 +28,8 @@ def all():
     return [post_mapper(r) for r in table]
 
 
-def latest():
-    return [post_mapper(r) for r in table.find(_limit=20, order_by='-updated')]
+def latest(limit=20):
+    return [post_mapper(r) for r in table.find(_limit=limit, order_by='-updated')]
 
 
 def create(title, content, tags=None, topic_id=None, url=None):

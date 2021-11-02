@@ -68,6 +68,7 @@ routes = [
         handlers.forms.add_post_to_topic,
         ['POST'],
     ),
+    ('/posts/all', 'all_posts', handlers.pages.all_posts, ['GET']),
 ]
 
 routes = routes + auth_routes
