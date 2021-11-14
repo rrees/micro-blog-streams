@@ -48,3 +48,10 @@ def add_post_to_topic(post_id, topic_id):
         row = {"blog_post_id": post_id, "topic_id": topic_id}
         tx['topic_posts'].insert_ignore(row, ["blog_post_id", "topic_id"])
         return post_id
+
+
+def remove_post_from_topic(post_id, topic_id):
+    with db as tx:
+        row_filter = {"blog_post_id": post_id, "topic_id": topic_id}
+        tx['topic_posts'].delete(**row_filter)
+        return post_id
