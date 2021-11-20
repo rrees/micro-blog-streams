@@ -69,6 +69,7 @@ routes = [
         ['POST'],
     ),
     ('/posts/all', 'all_posts', handlers.pages.all_posts, ['GET']),
+    ('/search', 'search', handlers.pages.search, ['GET']),
 ]
 
 routes = routes + auth_routes

@@ -93,3 +93,8 @@ def post_raw(post_id):
     return flask.render_template(
         'posts/raw.html', post=repositories.posts.post(post_id)
     )
+
+
+@login_required
+def search():
+    return flask.render_template('search.html')

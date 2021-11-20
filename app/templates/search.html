@@ -1,0 +1,30 @@
+{% extends 'default.html' %}
+
+{% block title %}Search{% endblock %}
+
+{% block content %}
+
+<div class="container-fluid">
+
+<h1>Search</h1>
+
+<h2>Topics</h2>
+
+<h2>Posts</h2>
+
+<form>
+	<div class="form-group">
+		<label for="post-title-search">Title</label>
+		<input
+			id="post-title-search"
+			name="post-title-search"
+			type="text"
+			class="form-control">
+	</div>
+	<div class="form-group">
+		<button class="btn btn-primary" type="submit">Search</button>
+	</div>
+</form>
+
+</div>
+{% endblock %}
