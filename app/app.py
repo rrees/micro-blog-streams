@@ -22,7 +22,7 @@ app.secret_key = os.environ.get("SECRET_KEY", os.urandom(24))
 app.config.update(
     SESSION_COOKIE_SECURE=True,
     SESSION_COOKIE_HTTPONLY=True,
-    SESSION_COOKIE_SAMESITE='Strict',
+    SESSION_COOKIE_SAMESITE="Strict",
 )
 
 if not ENV == "DEV":
@@ -31,45 +31,51 @@ if not ENV == "DEV":
 logger = app.logger
 
 routes = [
-    ('/', 'index', handlers.pages.front_page, ['GET']),
-    ('/home', 'home', handlers.pages.home, ['GET']),
-    ('/recent', 'recent', handlers.pages.recent_posts, ['GET']),
-    ('/topics', 'topics', handlers.pages.topics, ['GET']),
-    ('/topic/<topic_id>', 'topic', handlers.pages.topic, ['GET']),
-    ('/topic/<topic_id>/edit', 'edit_topic', handlers.pages.edit_topic, ['GET']),
+    ("/", "index", handlers.pages.front_page, ["GET"]),
+    ("/home", "home", handlers.pages.home, ["GET"]),
+    ("/recent", "recent", handlers.pages.recent_posts, ["GET"]),
+    ("/topics", "topics", handlers.pages.topics, ["GET"]),
+    ("/topic/<topic_id>", "topic", handlers.pages.topic, ["GET"]),
+    ("/topic/<topic_id>/edit", "edit_topic", handlers.pages.edit_topic, ["GET"]),
     (
-        '/forms/topic/<topic_id>/edit',
-        'edit_topic_form',
+        "/forms/topic/<topic_id>/edit",
+        "edit_topic_form",
         handlers.forms.edit_topic,
-        ['POST'],
+        ["POST"],
     ),
-    ('/topics/new', 'new_topic', handlers.pages.new_topic, ['GET']),
-    ('/forms/topic/new', 'new_topic_form', handlers.forms.new_topic, ['POST']),
-    ('/posts/new', 'new_post', handlers.pages.new_post, ['GET']),
-    ('/forms/post/new', 'new_post_form', handlers.forms.new_post, ['POST']),
-    ('/post/<post_id>', 'post', handlers.pages.post, ['GET']),
-    ('/post/<post_id>/raw', 'post_raw', handlers.pages.post_raw, ['GET']),
-    ('/post/<post_id>/edit', 'edit_post', handlers.pages.edit_post, ['GET']),
+    ("/topics/new", "new_topic", handlers.pages.new_topic, ["GET"]),
+    ("/forms/topic/new", "new_topic_form", handlers.forms.new_topic, ["POST"]),
+    ("/posts/new", "new_post", handlers.pages.new_post, ["GET"]),
+    ("/forms/post/new", "new_post_form", handlers.forms.new_post, ["POST"]),
+    ("/post/<post_id>", "post", handlers.pages.post, ["GET"]),
+    ("/post/<post_id>/raw", "post_raw", handlers.pages.post_raw, ["GET"]),
+    ("/post/<post_id>/edit", "edit_post", handlers.pages.edit_post, ["GET"]),
     (
-        '/forms/post/<post_id>/edit',
-        'edit_post_form',
+        "/forms/post/<post_id>/edit",
+        "edit_post_form",
         handlers.forms.edit_post,
-        ['POST'],
+        ["POST"],
     ),
     (
-        '/post/<post_id>/topics/edit',
-        'edit_post_topics',
+        "/post/<post_id>/topics/edit",
+        "edit_post_topics",
         handlers.pages.edit_post_topics,
-        ['GET'],
+        ["GET"],
     ),
     (
-        '/post/<post_id>/topics/add',
-        'add_post_to_topic',
+        "/post/<post_id>/topics/add",
+        "add_post_to_topic",
         handlers.forms.add_post_to_topic,
-        ['POST'],
+        ["POST"],
     ),
-    ('/posts/all', 'all_posts', handlers.pages.all_posts, ['GET']),
-    ('/search', 'search', handlers.pages.search, ['GET']),
+    ("/posts/all", "all_posts", handlers.pages.all_posts, ["GET"]),
+    ("/search", "search", handlers.pages.search, ["GET"]),
+    (
+        "/search/posts/title",
+        "search_posts_by_title",
+        handlers.pages.search_posts_by_title,
+        ["POST"],
+    ),
 ]
 
 routes = routes + auth_routes
@@ -84,5 +90,5 @@ for name, custom_filter in custom_filters:
 @app.errorhandler(500)
 def server_error(e):
     # Log the error and stacktrace.
-    logging.exception('An error occurred during a request.')
-    return 'An internal error occurred.', 500
+    logging.exception("An error occurred during a request.")
+    return "An internal error occurred.", 500

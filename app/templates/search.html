@@ -12,12 +12,12 @@
 
 <h2>Posts</h2>
 
-<form>
+<form method="POST" action="{{url_for('search_posts_by_title')}}">
 	<div class="form-group">
 		<label for="post-title-search">Title</label>
 		<input
 			id="post-title-search"
-			name="post-title-search"
+			name="search_term"
 			type="text"
 			class="form-control">
 	</div>
