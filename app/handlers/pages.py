@@ -72,6 +72,13 @@ def edit_topic(topic_id):
 
 
 @login_required
+def delete_topic(topic_id):
+    return flask.render_template(
+        "topics/delete.html", topic=repositories.topics.topic(topic_id)
+    )
+
+
+@login_required
 def edit_post(post_id):
     return flask.render_template(
         "posts/edit.html", post=repositories.posts.post(post_id)

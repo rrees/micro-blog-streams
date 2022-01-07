@@ -90,3 +90,10 @@ def add_post_to_topic(post_id):
         return flask.redirect(flask.url_for("edit_post_topics", post_id=post_id))
 
     flask.abort(400, "Form information incorrect")
+
+
+@login_required
+def delete_topic(topic_id):
+    # topics_repository.update(update_data)
+
+    return flask.redirect(flask.url_for("topics"))
