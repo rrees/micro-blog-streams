@@ -115,7 +115,7 @@ def search_posts_by_title():
         posts = repositories.posts.with_title_matching(search_form.search_term.data)
 
         return flask.render_template(
-            "posts-list.html", page_title="Search results", posts=posts
+            "posts-list.html", page_title="Search results", posts=list(posts)
         )
 
     flask.abort(400, "Form information incorrect")

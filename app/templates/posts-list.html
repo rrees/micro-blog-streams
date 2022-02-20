@@ -13,6 +13,8 @@
     	<li><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a> ({{post.updated | iso_date}})</li>
     	{% endfor %}
     </ul>
+    {% else %}
+    <p>No posts found</p>
     {% endif %}
 </div>
 {% endblock %}
