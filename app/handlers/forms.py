@@ -94,6 +94,6 @@ def add_post_to_topic(post_id):
 
 @login_required
 def delete_topic(topic_id):
-    # topics_repository.update(update_data)
+    topics_repository.delete(topic_id)
 
     return flask.redirect(flask.url_for("topics"))
