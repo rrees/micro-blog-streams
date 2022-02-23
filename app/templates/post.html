@@ -20,7 +20,7 @@
 	</div>
 	{% endif %}
 
-	{% if post.tags and post.tags| length > 0 %}
+	{% if post.tags %}
 	<div class="post-tags">
 		<p><strong>Tags:</strong> {{post.tags | join(' ')}}</p>
 	</div>
