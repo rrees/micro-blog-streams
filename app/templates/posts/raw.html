@@ -9,7 +9,10 @@
 
 	{% include "posts/fragments/post-actions.html" %}
 
-  	<textarea class="w-100" rows="10">{{post.content}}</textarea>
+  	<textarea class="w-100 mb-4" rows="10">{{post.content}}</textarea>
 
-  </div>
+	{% include 'posts/fragments/show-topics.html' %}
+</div>
+
+
 {% endblock %}

@@ -22,3 +22,10 @@ blockquote {
 		justify-content: space-between;
 	}
 }
+
+.post-tags--tag-list {
+	display: flex;
+	flex-direction: row;
+	list-style: none;
+	column-gap:  2rem;
+}
