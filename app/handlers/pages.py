@@ -120,3 +120,12 @@ def search_posts_by_title():
         )
 
     flask.abort(400, "Form information incorrect")
+
+@login_required
+def posts_by_tag(tag):
+    posts = repositories.posts.with_tag(tag)
+    return flask.render_template(
+        "posts-list.html",
+        page_title=f"Search results for tag {tag}",
+        posts=list(posts)
+        )

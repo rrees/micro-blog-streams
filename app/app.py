@@ -76,6 +76,7 @@ routes = [
         ["POST"],
     ),
     ("/posts/all", "all_posts", handlers.pages.all_posts, ["GET"]),
+    ("/posts/all/tag/<tag>", "posts_by_tag", handlers.pages.posts_by_tag, ["GET"]),
     ("/search", "search", handlers.pages.search, ["GET"]),
     (
         "/search/posts/title",

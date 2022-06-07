@@ -80,3 +80,8 @@ def update_post(new_post_data):
 def with_title_matching(search_text):
     with connect() as db:
         return map(post_mapper, table.find(title={'ilike': f"%{search_text}%"}))
+
+def with_tag(tag):
+    query = "SELECT * FROM blogpost WHERE :tag = ANY(tags)"
+    with connect() as db:
+        return map(post_mapper, db.query(query, tag=tag))
