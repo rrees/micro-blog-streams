@@ -1,0 +1,3 @@
+
+ALTER TABLE topic
+ADD COLUMN active BOOLEAN DEFAULT true;
