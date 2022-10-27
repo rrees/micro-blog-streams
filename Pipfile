@@ -10,16 +10,16 @@ name = "rrees-pypi"
 
 [dev-packages]
 bpython = "*"
+nomad = "*"
 
 [packages]
 gunicorn = "*"
 redis = "*"
 Flask = "*"
 Flask-SSLify = "*"
-nomad = "*"
 dataset = "*"
 wtforms = "*"
-psycopg2 = "*"
+psycopg2-binary = "*"
 mistune = "*"
 rrees-tag-manager = "*"
 
