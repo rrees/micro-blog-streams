@@ -80,12 +80,12 @@ def by_topic(topic_id, recent=True):
 def update_post(new_post_data):
 
     with connect() as tx:
-        table.update(new_post_data, ["id"])
+        tx[TABLENAME].update(new_post_data, ["id"])
 
 
 def with_title_matching(search_text):
     with connect() as db:
-        return map(post_mapper, table.find(title={"ilike": f"%{search_text}%"}))
+        return map(post_mapper, db[TABLENAME].find(title={"ilike": f"%{search_text}%"}))
 
 
 def with_tag(tag):
