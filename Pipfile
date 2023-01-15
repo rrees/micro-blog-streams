@@ -9,8 +9,8 @@ verify_ssl = true
 name = "rrees-pypi"
 
 [dev-packages]
-bpython = "*"
 nomad = "*"
+bpython = "*"
 
 [packages]
 gunicorn = "*"
@@ -21,7 +21,7 @@ dataset = "*"
 wtforms = "*"
 psycopg2-binary = "*"
 mistune = "*"
-rrees-tag-manager = "*"
+rrees-tag-manager = {version="*", index="rrees-pypi"}
 
 [requires]
 python_version = "3.10"
