@@ -37,6 +37,14 @@ def topics():
 
 
 @login_required
+def active_topics():
+    return flask.render_template(
+        "topics.html",
+        page_title="All Topics",
+        topics=repositories.topics.active(order_by="name")
+    )
+
+@login_required
 def topic(topic_id):
     return flask.render_template(
         "topic.html",

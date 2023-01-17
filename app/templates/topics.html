@@ -1,10 +1,10 @@
 {% extends 'default.html' %}
 
-{% block title %}Topics{% endblock %}
+{% block title %}{{page_title | default("Topics")}}{% endblock %}
 
 {% block content %}
 <div class="container-lg">
-    <h1>Topics</h1>
+    <h1>{{page_title | default("Topics")}}</h1>
 
     <nav class="nav mb-3">
         <p class="nav-link"><a href="{{url_for('new_topic')}}">Create new topic</a></p>

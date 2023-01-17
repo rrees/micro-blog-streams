@@ -19,6 +19,10 @@ def all(order_by=None):
     with connect() as tx:
         return queries.read(tx[TABLENAME].all(order_by="title"), mappers.topic_mapper)
 
+def active(order_by=None):
+    with connect() as tx:
+        return queries.read(tx[TABLENAME].all(active=True, order_by="title"), mappers.topic_mapper)
+
 
 def update(new_topic_data):
     with connect() as tx:
