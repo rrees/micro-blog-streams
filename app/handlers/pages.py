@@ -32,7 +32,8 @@ def all_posts():
 @login_required
 def topics():
     return flask.render_template(
-        "topics.html", topics=repositories.topics.active(order_by="name")
+        "topics.html",
+        topics=repositories.topics.active(order_by="name"),
     )
 
 
@@ -41,8 +42,9 @@ def all_topics():
     return flask.render_template(
         "topics.html",
         page_title="All Topics",
-        topics=repositories.topics.all(order_by="name")
+        topics=repositories.topics.all(order_by="name"),
     )
+
 
 @login_required
 def topic(topic_id):
@@ -80,6 +82,15 @@ def edit_topic(topic_id):
 
 
 @login_required
+def archive_topic(topic_id):
+    topic = repositories.topics.topic(topic_id)
+    return flask.render_template(
+        "topics/archive.html",
+        topic=topic,
+    )
+
+
+@login_required
 def delete_topic(topic_id):
     return flask.render_template(
         "topics/delete.html", topic=repositories.topics.topic(topic_id)
@@ -106,7 +117,8 @@ def edit_post_topics(post_id):
 @login_required
 def post_raw(post_id):
     return flask.render_template(
-        "posts/raw.html", post=repositories.posts.post(post_id),
+        "posts/raw.html",
+        post=repositories.posts.post(post_id),
         topics=repositories.topics.for_post(post_id),
     )
 
@@ -129,11 +141,10 @@ def search_posts_by_title():
 
     flask.abort(400, "Form information incorrect")
 
+
 @login_required
 def posts_by_tag(tag):
     posts = repositories.posts.with_tag(tag)
     return flask.render_template(
-        "posts-list.html",
-        page_title=f"Search results for tag {tag}",
-        posts=list(posts)
-        )
+        "posts-list.html", page_title=f"Search results for tag {tag}", posts=list(posts)
+    )

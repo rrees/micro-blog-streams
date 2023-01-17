@@ -9,4 +9,5 @@ def topic_mapper(topic):
 		title = topic['title'],
 		tags = topic['tags'],
 		description = topic['description'] if 'description' in topic else '',
-		updated = topic['updated'] if 'updated' in topic else None)
+		updated = topic['updated'] if 'updated' in topic else None,
+		active = topic['active'])

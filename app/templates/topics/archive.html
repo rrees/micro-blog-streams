@@ -1,0 +1,32 @@
+{% extends 'default.html' %}
+
+{% block title %}Archive topic {{topic.title}}{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <h1>{{topic.title}}</h1>
+
+    {% if topic.active %}
+
+    <p>Are you sure you want to archive the topic <a href="{{url_for('topic', topic_id=topic.id)}}">{{topic.title}}</a>?</p>
+
+    <form
+        method="POST"
+        action="{{url_for('archive_topic_form', topic_id=topic.id)}}"
+        >
+
+    	<button type="submit" class="btn btn-primary">Archive</button>
+    </form>
+    {% else %}
+
+    <p>Are you sure you want to unarchive the topic <a href="{{url_for('topic', topic_id=topic.id)}}">{{topic.title}}</a>?</p>
+
+    <form
+        method="POST"
+        action="{{url_for('unarchive_topic_form', topic_id=topic.id)}}"
+        >
+
+        <button type="submit" class="btn btn-primary">Unarchive</button>
+    </form>
+    {% endif %}
+{% endblock %}

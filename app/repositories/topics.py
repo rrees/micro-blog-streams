@@ -19,9 +19,12 @@ def all(order_by=None):
     with connect() as tx:
         return queries.read(tx[TABLENAME].all(order_by="title"), mappers.topic_mapper)
 
+
 def active(order_by=None):
     with connect() as tx:
-        return queries.read(tx[TABLENAME].all(active=True, order_by="title"), mappers.topic_mapper)
+        return queries.read(
+            tx[TABLENAME].find(active=True, order_by="title"), mappers.topic_mapper
+        )
 
 
 def update(new_topic_data):
@@ -60,6 +63,7 @@ def remove_post_from_topic(post_id, topic_id):
         row_filter = {"blog_post_id": post_id, "topic_id": topic_id}
         tx["topic_posts"].delete(**row_filter)
         return post_id
+
 
 def active_flag(topic_id, active_flag):
     with connect() as tx:
