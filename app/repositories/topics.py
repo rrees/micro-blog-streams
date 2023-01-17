@@ -60,3 +60,9 @@ def remove_post_from_topic(post_id, topic_id):
         row_filter = {"blog_post_id": post_id, "topic_id": topic_id}
         tx["topic_posts"].delete(**row_filter)
         return post_id
+
+def active_flag(topic_id, active_flag):
+    with connect() as tx:
+        tx["topic"].update({"id": topic_id, "active": active_flag}, ["id"])
+
+        return topic_id

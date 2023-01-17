@@ -97,3 +97,15 @@ def delete_topic(topic_id):
     topics_repository.delete(topic_id)
 
     return flask.redirect(flask.url_for("topics"))
+
+@login_required
+def archive_topic(topic_id):
+    topics_repository.active(topic_id, False)
+
+    return flask.redirect(flask.url_for("topic", topic_id=topic_id))
+
+@login_required
+def unarchive_topic(topic_id):
+    topics_repository.active_flag(topic_id, True)
+
+    return flask.redirect(flask.url_for("topic", topic_id=topic_id))

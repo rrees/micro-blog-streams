@@ -32,16 +32,16 @@ def all_posts():
 @login_required
 def topics():
     return flask.render_template(
-        "topics.html", topics=repositories.topics.all(order_by="name")
+        "topics.html", topics=repositories.topics.active(order_by="name")
     )
 
 
 @login_required
-def active_topics():
+def all_topics():
     return flask.render_template(
         "topics.html",
         page_title="All Topics",
-        topics=repositories.topics.active(order_by="name")
+        topics=repositories.topics.all(order_by="name")
     )
 
 @login_required
