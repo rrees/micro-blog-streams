@@ -13,7 +13,7 @@
 <h2>Posts</h2>
 
 <form method="POST" action="{{url_for('search_posts_by_title')}}">
-	<div class="form-group">
+	<div class="mb-3">
 		<label for="post-title-search">Title</label>
 		<input
 			id="post-title-search"
@@ -21,7 +21,7 @@
 			type="text"
 			class="form-control">
 	</div>
-	<div class="form-group">
+	<div class="mb-3">
 		<button class="btn btn-primary" type="submit">Search</button>
 	</div>
 </form>
