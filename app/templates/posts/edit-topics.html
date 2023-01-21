@@ -10,32 +10,31 @@
 	{% include "posts/fragments/post-actions.html" %}
 
 	<div class="edit-post-topics">
-		<div>
+		<div class="mb-4">
 			<form
 				method="POST"
 				action="{{url_for('add_post_to_topic', post_id=post.id)}}">
-				<div class="form-group">
-					<label>Add to Topic</label>
+				<div class="mb-3">
+					<label class="form-label me-2">Add to Topic</label>
 					<select name="topic_id">
 						{% for topic in all_topics %}
 						<option value="{{topic.id}}">{{topic.title}}</option>
 						{% endfor %}
 					</select>
 				</div>
-				<div class="form-group">
-					<button type="submit" class="btn btn-primary">Add</button>
-				</div>
+				<button type="submit" class="btn btn-primary">Add</button>
+
 			</form>
 		</div>
 
 		<div>
-			<ul>
+			<ul class="edit-post-topics--topic-list">
 				{% for topic in post_topics %}
 				<li>
 					<form method="POST">
 						<input type="hidden" name="topic_id" value="{{topic.id}}">
 						<input type="hidden" name="post_id" value="{{post.id}}">
-						<span class="mr-3">{{topic.title}}</span>
+						<span class="me-3">{{topic.title}}</span>
 						<button type="submit" class="btn btn-sm btn-danger">Delete</button>
 					</form>
 				</li>

@@ -29,3 +29,7 @@ blockquote {
 	list-style: none;
 	column-gap:  2rem;
 }
+
+.edit-post-topics--topic-list > li {
+	line-height: 3;
+}

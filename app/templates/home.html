@@ -13,7 +13,7 @@
            {% if topics %}
              <ul>
             	{% for topic in topics %}
-            	<li><a href="{{url_for('topic', topic_id=topic.id)}}">{{topic.title}}</a>  ({{topic.updated | iso_date}})</li>
+            	<li><a href="{{url_for('topic', topic_id=topic.id)}}">{{topic.title}}</a>  <time datetime="{{topic.updated | iso_date}}">({{topic.updated | iso_date}})</time></li>
             	{% endfor %}
             </ul>
             {% endif %}
@@ -24,7 +24,7 @@
 
             <ul>
                 {% for post in posts %}
-                <li><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a> ({{post.updated | iso_date}})</li>
+                <li><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a> <time datetime="{{post.updated | iso_date}}">({{post.updated | iso_date}})<time></li>
                 {% endfor %}
             </ul>
         </div>
