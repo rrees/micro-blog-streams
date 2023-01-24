@@ -31,10 +31,18 @@
 			<ul class="edit-post-topics--topic-list">
 				{% for topic in post_topics %}
 				<li>
-					<form method="POST">
+					<span class="me-3">{{topic.title}}</span>
+
+					<form
+						method="GET"
+						class="d-inline me-3"
+						action="{{url_for('topic', topic_id=topic.id)}}">
+						<button type="submit" class="btn btn-sm btn-light">View</button>
+					</form>
+
+					<form method="POST" class="d-inline">
 						<input type="hidden" name="topic_id" value="{{topic.id}}">
 						<input type="hidden" name="post_id" value="{{post.id}}">
-						<span class="me-3">{{topic.title}}</span>
 						<button type="submit" class="btn btn-sm btn-danger">Delete</button>
 					</form>
 				</li>

@@ -29,7 +29,7 @@ def active(order_by=None):
 
 def update(new_topic_data):
     with connect() as tx:
-        table.update(new_topic_data, ["id"])
+        tx[TABLENAME].update(new_topic_data, ["id"])
 
 
 def topic(topic_id):
