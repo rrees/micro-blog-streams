@@ -47,6 +47,15 @@ def all_topics():
 
 
 @login_required
+def archived_topics():
+    return flask.render_template(
+        "topics.html",
+        page_title="Archived Topics",
+        topics=repositories.topics.archived(order_by="name"),
+    )
+
+
+@login_required
 def topic(topic_id):
     return flask.render_template(
         "topic.html",

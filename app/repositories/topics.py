@@ -27,6 +27,13 @@ def active(order_by=None):
         )
 
 
+def archived(order_by=None):
+    with connect() as tx:
+        return queries.read(
+            tx[TABLENAME].find(active=False, order_by="title"), mappers.topic_mapper
+        )
+
+
 def update(new_topic_data):
     with connect() as tx:
         tx[TABLENAME].update(new_topic_data, ["id"])

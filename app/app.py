@@ -36,6 +36,7 @@ routes = [
     ("/recent", "recent", handlers.pages.recent_posts, ["GET"]),
     ("/topics", "topics", handlers.pages.topics, ["GET"]),
     ("/topics/all", "all_topics", handlers.pages.all_topics, ["GET"]),
+    ("/topics/archived", "archived_topics", handlers.pages.archived_topics, ["GET"]),
     ("/topic/<topic_id>", "topic", handlers.pages.topic, ["GET"]),
     ("/topic/<topic_id>/edit", "edit_topic", handlers.pages.edit_topic, ["GET"]),
     (
