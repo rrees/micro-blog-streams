@@ -1,5 +1,15 @@
 {% extends 'default.html' %}
 
+{% macro archive_form(url, button_label) -%}
+    <form
+        method="POST"
+        action="{{url}}"
+        >
+
+        <button type="submit" class="btn btn-primary">{{button_label}}</button>
+    </form>
+{%- endmacro %}
+
 {% block title %}Archive topic {{topic.title}}{% endblock %}
 
 {% block content %}
@@ -10,23 +20,13 @@
 
     <p>Are you sure you want to archive the topic <a href="{{url_for('topic', topic_id=topic.id)}}">{{topic.title}}</a>?</p>
 
-    <form
-        method="POST"
-        action="{{url_for('archive_topic_form', topic_id=topic.id)}}"
-        >
+    {{ archive_form(url_for('archive_topic_form', topic_id=topic.id), 'Archive')}}
 
-    	<button type="submit" class="btn btn-primary">Archive</button>
-    </form>
     {% else %}
 
     <p>Are you sure you want to unarchive the topic <a href="{{url_for('topic', topic_id=topic.id)}}">{{topic.title}}</a>?</p>
 
-    <form
-        method="POST"
-        action="{{url_for('unarchive_topic_form', topic_id=topic.id)}}"
-        >
-
-        <button type="submit" class="btn btn-primary">Unarchive</button>
-    </form>
+    {{ archive_form(url_for('unarchive_topic_form', topic_id=topic.id), 'Unarchive')}}
+    
     {% endif %}
 {% endblock %}
