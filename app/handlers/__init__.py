@@ -1,3 +1,3 @@
 from . import pages
 from . import forms
-from . import menus
+from . import navigation

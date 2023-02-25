@@ -106,7 +106,7 @@ routes = [
     ),
 ]
 
-routes = routes + auth_routes + handlers.menus.menu_routes
+routes = routes + auth_routes + handlers.navigation.navigation_routes
 
 for path, endpoint, handler, methods in routes:
     app.add_url_rule(path, endpoint, handler, methods=methods)
