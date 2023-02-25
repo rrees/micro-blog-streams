@@ -1,0 +1,30 @@
+{% extends 'default.html' %}
+
+{% block title %}Topics | Menu{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>Topics</h1>
+
+    <ul class="navigation-menu">
+        <li>
+            <a
+                class="navigation-menu--item"
+                href="{{url_for('topics')}}"
+                >Topics</a>
+        </li>
+        <li>
+            <a
+                class="navigation-menu--item"
+                href="{{url_for('all_topics')}}"
+                >All Topics</a>
+        </li>
+        <li>
+            <a
+                class="navigation-menu--item"
+                href="{{url_for('archived_topics')}}"
+                >Archived Topics</a>
+        </li>
+</ul>
+</div>
+{% endblock %}
