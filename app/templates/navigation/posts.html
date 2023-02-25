@@ -1,0 +1,18 @@
+{% extends 'default.html' %}
+
+{% block title %}Posts | Navigation{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>Posts</h1>
+
+    <ul class="navigation-menu">
+        <li>
+            <a class="navigation-menu--item" href="{{url_for('recent')}}">Recent posts</a>
+        </li>
+        <li>
+            <a class="navigation-menu--item" href="{{url_for('all_posts')}}">All posts</a>
+        </li>
+</ul>
+</div>
+{% endblock %}
