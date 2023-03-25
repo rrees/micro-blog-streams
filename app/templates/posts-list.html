@@ -15,6 +15,11 @@
     </ul>
     {% else %}
     <p>No posts found</p>
+
+    {% if return_link %}
+    <p><a href="{{return_link.path}}">{{return_link.text}}</a></p>
+    {% endif %}
+    
     {% endif %}
 </div>
 {% endblock %}

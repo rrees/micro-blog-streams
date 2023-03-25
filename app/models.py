@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 from typing import NamedTuple, List
 
 from datetime import datetime
@@ -18,3 +19,8 @@ class BlogPost(NamedTuple):
     content: str
     tags: List[str]
     updated: datetime
+
+@dataclass(frozen=True)
+class ReturnLink():
+    path:str
+    text: str

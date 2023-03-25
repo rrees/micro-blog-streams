@@ -1,7 +1,9 @@
+import itertools
+
 import flask
 
 from app.auth_password.decorators import login_required
-from app import repositories, search_forms
+from app import repositories, search_forms, models
 
 
 def front_page():
@@ -140,13 +142,21 @@ def search():
 @login_required
 def search_posts_by_title():
     search_form = search_forms.SearchForm(flask.request.form)
+    return_link = None
 
     if search_form.validate():
-        posts = repositories.posts.with_title_matching(search_form.search_term.data)
+        posts, posts_test = itertools.tee(repositories.posts.with_title_matching(search_form.search_term.data))
+
+        try:
+            next(posts_test)
+        except StopIteration:
+            return_link = models.ReturnLink(
+                path = flask.url_for('search'),
+                text = "Search again"
+            )
 
         return flask.render_template(
-            "posts-list.html", page_title="Search results", posts=list(posts)
-        )
+            "posts-list.html", page_title="Search results", posts=list(posts), return_link=return_link)
 
     flask.abort(400, "Form information incorrect")
 
