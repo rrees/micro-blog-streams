@@ -24,4 +24,4 @@ mistune = "*"
 rrees-tag-manager = {version="*", index="rrees-pypi"}
 
 [requires]
-python_version = "3.10"
+python_version = "3.11"
