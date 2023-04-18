@@ -3,12 +3,16 @@
 	{% for post in recent_posts %}
 	<li>
 		<details>
-			<summary>{{post.title}}</summary>
+			<summary>{{post.title}} ({{post.updated | iso_date}})</summary>
 			
+			<div class="my-1">
 			{{post.content | markdown | safe}}
+			</div>
 
 		</details>
-		<p><a href="{{url_for('post', post_id=post.id)}}">View</a> <a href="{{url_for('edit_post', post_id=post.id)}}">Edit</a> ({{post.updated | iso_date}})</p>
+		{% with spacing_class = "mb-3" %}
+		{% include 'posts/fragments/post-actions.html' %}
+		{% endwith %}
 	</li>
 	{% endfor %}
 </ol>
