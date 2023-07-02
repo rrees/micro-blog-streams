@@ -72,6 +72,12 @@ routes = [
         handlers.forms.unarchive_topic,
         ["POST"],
     ),
+    (
+        "/topic/<topic_id>/posts/all",
+        "all_posts_for_topic",
+        handlers.pages.all_posts_for_topic,
+        ["GET"],
+    ),
     ("/posts/new", "new_post", handlers.pages.new_post, ["GET"]),
     ("/forms/post/new", "new_post_form", handlers.forms.new_post, ["POST"]),
     ("/post/<post_id>", "post", handlers.pages.post, ["GET"]),

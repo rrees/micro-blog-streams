@@ -19,5 +19,7 @@
     <h2>Recent posts on {{topic.title}}</h2>
 
     {% include 'posts/fragments/recent-posts.html' %}
+
+    <p>See <a href="{{url_for('all_posts_for_topic', topic_id=topic.id)}}">all posts</a> for {{topic.title}}</p>
 </div>
 {% endblock %}

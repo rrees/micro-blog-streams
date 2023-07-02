@@ -145,18 +145,23 @@ def search_posts_by_title():
     return_link = None
 
     if search_form.validate():
-        posts, posts_test = itertools.tee(repositories.posts.with_title_matching(search_form.search_term.data))
+        posts, posts_test = itertools.tee(
+            repositories.posts.with_title_matching(search_form.search_term.data)
+        )
 
         try:
             next(posts_test)
         except StopIteration:
             return_link = models.ReturnLink(
-                path = flask.url_for('search'),
-                text = "Search again"
+                path=flask.url_for("search"), text="Search again"
             )
 
         return flask.render_template(
-            "posts-list.html", page_title="Search results", posts=list(posts), return_link=return_link)
+            "posts-list.html",
+            page_title="Search results",
+            posts=list(posts),
+            return_link=return_link,
+        )
 
     flask.abort(400, "Form information incorrect")
 
@@ -166,4 +171,16 @@ def posts_by_tag(tag):
     posts = repositories.posts.with_tag(tag)
     return flask.render_template(
         "posts-list.html", page_title=f"Search results for tag {tag}", posts=list(posts)
+    )
+
+
+@login_required
+def all_posts_for_topic(topic_id):
+    topic = repositories.topics.topic(topic_id)
+    posts = repositories.posts.by_topic(topic_id)
+
+    return flask.render_template(
+        "topics/all-posts.html",
+        topic=topic,
+        posts=posts,
     )

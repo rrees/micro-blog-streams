@@ -14,3 +14,7 @@ Requires an appropriate .env file to supply the application parameters
 * USER_EMAILS
 * PASSWORD
 * SECRET_KEY
+
+## Database management
+
+Create migrations in the [Nomad](https://github.com/piranha/nomad) directory structure but apply them manually

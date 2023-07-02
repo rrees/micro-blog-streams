@@ -1,0 +1,23 @@
+{% extends 'default.html' %}
+
+{% block title %}All posts for {{topic.title}}{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <h1>All posts for {{topic.title}}</h1>
+
+    <p>Topic: <a href="{{url_for('topic', topic_id=topic.id)}}">{{topic.title}}</a></p>
+
+    {% if posts %}
+
+    <ul>
+    	{% for post in posts %}
+    	<li><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a> ({{post.updated | iso_date}})</li>
+    	{% endfor %}
+    </ul>
+    {% else %}
+    <p>No posts written for topic yet</p>
+    
+    {% endif %}
+</div>
+{% endblock %}
