@@ -66,19 +66,21 @@ def recent():
         return queries.read(tx[TABLENAME].find(order_by=["-updated"]), post_mapper)
 
 
-def by_topic(topic_id, recent=True):
+def by_topic(topic_id, recent=True, limit=None):
     query = (
         "SELECT * from blogpost INNER JOIN topic_posts ON blog_post_id = id WHERE"
         " topic_id = :topic_id ORDER BY updated DESC"
     )
 
+    if limit:
+        query = query + " LIMIT :limit"
+
     with connect() as db:
-        return map(post_mapper, db.query(query, topic_id=topic_id))
+        return map(post_mapper, db.query(query, topic_id=topic_id, limit=limit))
         # return [post_mapper(table.find_one(id=pid)) for pid in db.query(query, topic_id)]
 
 
 def update_post(new_post_data):
-
     with connect() as tx:
         tx[TABLENAME].update(new_post_data, ["id"])
 
