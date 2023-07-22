@@ -1,6 +1,9 @@
 import os
 
 import dataset
+import psycopg
+
+from psycopg.rows import dict_row
 
 _db_url = os.environ["DATABASE_URL"]
 
@@ -15,3 +18,7 @@ connection = dataset.connect(_connection_url)
 
 def connect():
     return dataset.connect(_connection_url)
+
+
+def pg_connect(autocommit=True):
+    return psycopg.connect(_db_url, row_factory=dict_row, autocommit=autocommit)

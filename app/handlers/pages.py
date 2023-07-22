@@ -12,7 +12,7 @@ def front_page():
 
 @login_required
 def home():
-    posts = repositories.posts.latest(limit=40)
+    posts = repositories.posts.latest(limit=50)
     topics = repositories.topics.active()
     return flask.render_template("home.html", posts=posts, topics=topics)
 

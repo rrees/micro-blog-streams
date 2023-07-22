@@ -1,6 +1,9 @@
-from .db import connect
+from .db import connect, pg_connect
+
+from . import sql_queries
 
 from . import mappers, queries
+
 
 TABLENAME = "topic"
 
@@ -16,15 +19,17 @@ def create(topic_name, description=None):
 
 
 def all(order_by=None):
-    with connect() as tx:
-        return queries.read(tx[TABLENAME].all(order_by="title"), mappers.topic_mapper)
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_queries.topics.all_topics)
+            return [mappers.topic_mapper(row) for row in cursor.fetchall()]
 
 
 def active(order_by=None):
-    with connect() as tx:
-        return queries.read(
-            tx[TABLENAME].find(active=True, order_by="title"), mappers.topic_mapper
-        )
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_queries.topics.active_topics)
+            return [mappers.topic_mapper(row) for row in cursor.fetchall()]
 
 
 def archived(order_by=None):

@@ -1,9 +1,10 @@
 from app import models
 
-from .db import connection, connect
+from .db import connection, connect, pg_connect
 
 from . import mappers
 from . import queries
+from . import sql_queries
 
 TABLENAME = "blogpost"
 
@@ -25,16 +26,17 @@ def post_mapper(post):
 
 
 def all():
-    with connect() as tx:
-        return [post_mapper(r) for r in tx[TABLENAME]]
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_queries.posts.all_posts)
+            return [post_mapper(r) for r in cursor]
 
 
 def latest(limit=20):
-    with connect() as tx:
-        return [
-            post_mapper(r)
-            for r in tx[TABLENAME].find(_limit=limit, order_by="-updated")
-        ]
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_queries.posts.latest_posts, (limit,))
+            return [post_mapper(r) for r in cursor]
 
 
 def create(title, content, tags=None, topic_id=None, url=None):
