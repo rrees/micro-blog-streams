@@ -2,7 +2,6 @@ from app import models
 
 
 def topic_mapper(topic):
-    print(topic)
     if not topic:
         return None
     return models.Topic(

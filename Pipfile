@@ -22,7 +22,7 @@ wtforms = "*"
 psycopg2-binary = "*"
 mistune = "*"
 rrees-tag-manager = {version="*", index="rrees-pypi"}
-psycopg = "*"
+psycopg = {extras = ["binary"], version = "*"}
 
 [requires]
 python_version = "3.11"
