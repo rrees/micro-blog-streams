@@ -33,10 +33,10 @@ def active(order_by=None):
 
 
 def archived(order_by=None):
-    with connect() as tx:
-        return queries.read(
-            tx[TABLENAME].find(active=False, order_by="title"), mappers.topic_mapper
-        )
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_queries.topics.archived_topics)
+            return [mappers.topic_mapper(row) for row in cursor.fetchall()]
 
 
 def update(new_topic_data):
@@ -45,8 +45,10 @@ def update(new_topic_data):
 
 
 def topic(topic_id):
-    with connect() as db:
-        return mappers.topic_mapper(db[TABLENAME].find_one(id=topic_id))
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_queries.topics.topic_by_id, (topic_id,))
+            return mappers.topic_mapper(cursor.fetchone())
 
 
 def for_post(post_id):

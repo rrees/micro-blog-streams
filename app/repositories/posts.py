@@ -68,18 +68,13 @@ def recent():
         return queries.read(tx[TABLENAME].find(order_by=["-updated"]), post_mapper)
 
 
-def by_topic(topic_id, recent=True, limit=None):
-    query = (
-        "SELECT * from blogpost INNER JOIN topic_posts ON blog_post_id = id WHERE"
-        " topic_id = :topic_id ORDER BY updated DESC"
-    )
+def by_topic(topic_id, recent=True, limit="ALL"):
+    query = sql_queries.posts.by_topic
 
-    if limit:
-        query = query + " LIMIT :limit"
-
-    with connect() as db:
-        return map(post_mapper, db.query(query, topic_id=topic_id, limit=limit))
-        # return [post_mapper(table.find_one(id=pid)) for pid in db.query(query, topic_id)]
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(query, (topic_id, limit))
+            return [post_mapper(r) for r in cursor]
 
 
 def update_post(new_post_data):
@@ -93,6 +88,7 @@ def with_title_matching(search_text):
 
 
 def with_tag(tag):
-    query = "SELECT * FROM blogpost WHERE :tag = ANY(tags)"
-    with connect() as db:
-        return map(post_mapper, db.query(query, tag=tag))
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_queries.posts.with_tag, (tag,))
+            return [post_mapper(row) for row in cursor]
