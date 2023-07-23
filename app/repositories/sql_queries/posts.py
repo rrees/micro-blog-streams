@@ -6,6 +6,10 @@ FROM blogpost
 ORDER BY updated DESC
 LIMIT %s"""
 
+by_id = """SELECT *
+FROM blogpost
+WHERE id = %s"""
+
 by_topic = """SELECT *
 FROM blogpost
 INNER JOIN topic_posts

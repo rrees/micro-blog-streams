@@ -59,8 +59,10 @@ def create(title, content, tags=None, topic_id=None, url=None):
 
 
 def post(post_id):
-    with connect() as tx:
-        return tx[TABLENAME].find_one(id=post_id)
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_queries.posts.by_id, (post_id,))
+            return post_mapper(cursor.fetchone())
 
 
 def recent():
