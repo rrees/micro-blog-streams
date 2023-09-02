@@ -70,12 +70,12 @@ def recent():
         return queries.read(tx[TABLENAME].find(order_by=["-updated"]), post_mapper)
 
 
-def by_topic(topic_id, recent=True, limit="ALL"):
+def by_topic(topic_id, recent=True, limit=None):
     query = sql_queries.posts.by_topic
 
     with pg_connect() as conn:
         with conn.cursor() as cursor:
-            cursor.execute(query, (topic_id, limit))
+            cursor.execute(query, {"topic_id": topic_id, "limit": limit})
             return [post_mapper(r) for r in cursor]
 
 
