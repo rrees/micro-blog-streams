@@ -94,3 +94,12 @@ def with_tag(tag):
         with conn.cursor() as cursor:
             cursor.execute(sql_queries.posts.with_tag, (tag,))
             return [post_mapper(row) for row in cursor]
+
+
+def remove_topic(post_id, topic_id):
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            with conn.transaction():
+                parameters = {"post_id": post_id, "topic_id": topic_id}
+                cursor.execute(sql_queries.posts.remove_topic, parameters)
+                return post_id

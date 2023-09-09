@@ -21,3 +21,7 @@ LIMIT %(limit)s"""
 with_tag = """SELECT *
 FROM blogpost
 WHERE %s = ANY(tags)"""
+
+remove_topic = """DELETE FROM topic_posts
+WHERE topic_id = %(topic_id)s
+AND blog_post_id = %(post_id)s"""
