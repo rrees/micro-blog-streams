@@ -101,6 +101,12 @@ routes = [
         handlers.forms.add_post_to_topic,
         ["POST"],
     ),
+    (
+        "/post/<post_id>/topics/remove",
+        "remove_topic_from_post",
+        handlers.forms.remove_topic_from_post,
+        ["POST"],
+    ),
     ("/posts/all", "all_posts", handlers.pages.all_posts, ["GET"]),
     ("/posts/all/tag/<tag>", "posts_by_tag", handlers.pages.posts_by_tag, ["GET"]),
     ("/search", "search", handlers.pages.search, ["GET"]),
