@@ -25,3 +25,11 @@ WHERE %s = ANY(tags)"""
 remove_topic = """DELETE FROM topic_posts
 WHERE topic_id = %(topic_id)s
 AND blog_post_id = %(post_id)s"""
+
+delete = """DELETE
+FROM blogpost
+WHERE id = %(post_id)s"""
+
+remove_all_topics = """DELETE
+FROM topic_posts
+WHERE blog_post_id = %(post_id)s"""

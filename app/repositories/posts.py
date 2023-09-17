@@ -103,3 +103,13 @@ def remove_topic(post_id, topic_id):
                 parameters = {"post_id": post_id, "topic_id": topic_id}
                 cursor.execute(sql_queries.posts.remove_topic, parameters)
                 return post_id
+
+
+def delete(post_id):
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            with conn.transaction():
+                parameters = {"post_id": post_id}
+                cursor.execute(sql_queries.posts.remove_all_topics, parameters)
+                cursor.execute(sql_queries.posts.delete, parameters)
+                return post_id
