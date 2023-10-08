@@ -184,3 +184,26 @@ def all_posts_for_topic(topic_id):
         topic=topic,
         posts=posts,
     )
+
+
+@login_required
+def search_topics_by_title():
+    search_form = search_forms.SearchForm(flask.request.form)
+    return_link = None
+
+    if search_form.validate():
+        topics = repositories.topics.search_by_title(search_form.search_term.data)
+
+        if not topics:
+            return_link = models.ReturnLink(
+                path=flask.url_for("search"), text="Search again"
+            )
+
+        return flask.render_template(
+            "topics.html",
+            page_title="Search results",
+            topics=topics,
+            return_link=return_link,
+        )
+
+    flask.abort(400, "Form information incorrect")

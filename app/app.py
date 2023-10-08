@@ -116,6 +116,12 @@ routes = [
         handlers.pages.search_posts_by_title,
         ["POST"],
     ),
+    (
+        "/search/topics/title",
+        "search_topics_by_title",
+        handlers.pages.search_topics_by_title,
+        ["POST"],
+    ),
 ]
 
 routes = routes + auth_routes + handlers.navigation.navigation_routes

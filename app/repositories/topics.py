@@ -84,3 +84,12 @@ def active_flag(topic_id, active_flag):
         tx["topic"].update({"id": topic_id, "active": active_flag}, ["id"])
 
         return topic_id
+
+
+def search_by_title(search_text):
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            params = {"search_text": f"%{search_text}%"}
+            cursor.execute(sql_queries.topics.search_by_title, params)
+
+            return [mappers.topic_mapper(row) for row in cursor.fetchall()]

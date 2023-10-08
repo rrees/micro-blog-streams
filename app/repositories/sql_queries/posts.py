@@ -33,3 +33,7 @@ WHERE id = %(post_id)s"""
 remove_all_topics = """DELETE
 FROM topic_posts
 WHERE blog_post_id = %(post_id)s"""
+
+search_by_title = """SELECT *
+FROM blogpost
+WHERE title ilike %(search_text)s"""

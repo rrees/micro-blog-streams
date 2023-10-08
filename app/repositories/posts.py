@@ -85,8 +85,11 @@ def update_post(new_post_data):
 
 
 def with_title_matching(search_text):
-    with connect() as db:
-        return map(post_mapper, db[TABLENAME].find(title={"ilike": f"%{search_text}%"}))
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            params = {"search_text": f"%{search_text}%"}
+            cursor.execute(sql_queries.posts.search_by_title, params)
+            return [post_mapper(r) for r in cursor]
 
 
 def with_tag(tag):

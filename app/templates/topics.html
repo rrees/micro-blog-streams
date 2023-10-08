@@ -18,5 +18,9 @@
     </ol>
     {% endif %}
 
+    {% if return_link %}
+    <p><a href="{{return_link.path}}">{{return_link.text}}</a></p>
+    {% endif %}
+    
 </div>
 {% endblock %}
