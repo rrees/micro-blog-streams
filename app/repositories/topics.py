@@ -1,4 +1,4 @@
-from .db import connect, pg_connect
+from .db import connect, pg_connect, format_placeholders
 
 from . import sql_queries
 
@@ -14,8 +14,12 @@ def create(topic_name, description=None):
     if description:
         new_topic["description"] = description
 
-    with connect() as tx:
-        return tx["topic"].insert(new_topic)
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            with conn.transaction():
+                query = format_placeholders(sql_queries.topics.create, new_topic.keys())
+                cursor.execute(query, new_topic)
+                return cursor.fetchone()["id"]
 
 
 def all(order_by=None):
@@ -52,17 +56,20 @@ def topic(topic_id):
 
 
 def for_post(post_id):
-    with connect() as tx:
-        topic_links = tx["topic_posts"].find(blog_post_id=post_id)
-        return [topic(topic_link["topic_id"]) for topic_link in topic_links]
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_queries.topics.for_post, {"post_id": post_id})
+            return [topic(result["topic_id"]) for result in cursor.fetchall()]
 
 
 def delete(topic_id):
-    with connect() as tx:
-        tx["topic_posts"].delete(topic_id=topic_id)
-        tx["topic"].delete(id=topic_id)
-
-        return topic_id
+    params = {"topic_id": topic_id}
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            with conn.transaction():
+                cursor.execute(sql_queries.topic_posts.delete_by_topic, params)
+                cursor.execute(sql_queries.topics.delete, params)
+                return topic_id
 
 
 def add_post_to_topic(post_id, topic_id):
