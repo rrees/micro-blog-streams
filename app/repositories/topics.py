@@ -1,4 +1,4 @@
-from .db import connect, pg_connect, format_placeholders
+from .db import connect, execute_statement, format_placeholders, pg_connect
 
 from . import sql_queries
 
@@ -64,6 +64,7 @@ def for_post(post_id):
 
 def delete(topic_id):
     params = {"topic_id": topic_id}
+
     with pg_connect() as conn:
         with conn.cursor() as cursor:
             with conn.transaction():
@@ -87,10 +88,9 @@ def remove_post_from_topic(post_id, topic_id):
 
 
 def active_flag(topic_id, active_flag):
-    with connect() as tx:
-        tx["topic"].update({"id": topic_id, "active": active_flag}, ["id"])
-
-        return topic_id
+    params = {"topic_id": topic_id, "active_flag": active_flag}
+    execute_statement(sql_queries.topics.active_flag, params)
+    return topic_id
 
 
 def search_by_title(search_text):

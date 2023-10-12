@@ -32,3 +32,10 @@ def format_placeholders(statement, column_names):
         by_type(psycopg.sql.Identifier, column_names),
         by_type(psycopg.sql.Placeholder, column_names),
     )
+
+
+def execute_statement(statement, params):
+    with pg_connect() as connection:
+        with connection.cursor() as cursor:
+            with connection.transaction():
+                cursor.execute(statement, params)
