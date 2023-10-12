@@ -25,11 +25,18 @@ def post_mapper(post):
     )
 
 
-def all():
+def query_posts(query, params=None):
+    if not params:
+        params = {}
+
     with pg_connect() as conn:
         with conn.cursor() as cursor:
-            cursor.execute(sql_queries.posts.all_posts)
+            cursor.execute(query, params)
             return [post_mapper(r) for r in cursor]
+
+
+def all():
+    return query_posts(sql_queries.posts.all_posts)
 
 
 def latest(limit=20):
@@ -66,16 +73,16 @@ def post(post_id):
 
 
 def recent():
-    with connect() as tx:
-        return queries.read(tx[TABLENAME].find(order_by=["-updated"]), post_mapper)
+    return query_posts(sql_queries.posts.recent)
 
 
 def by_topic(topic_id, recent=True, limit=None):
     query = sql_queries.posts.by_topic
+    params = {"topic_id": topic_id, "limit": limit}
 
     with pg_connect() as conn:
         with conn.cursor() as cursor:
-            cursor.execute(query, {"topic_id": topic_id, "limit": limit})
+            cursor.execute(query, params)
             return [post_mapper(r) for r in cursor]
 
 

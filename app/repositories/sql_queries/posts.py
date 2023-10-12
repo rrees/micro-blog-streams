@@ -6,6 +6,10 @@ FROM blogpost
 ORDER BY updated DESC
 LIMIT %s"""
 
+recent = """SELECT *
+FROM blogpost
+ORDER BY updated DESC"""
+
 by_id = """SELECT *
 FROM blogpost
 WHERE id = %s"""
