@@ -66,22 +66,6 @@ def create(title, content, tags=None, topic_id=None, url=None):
                     {"post_id": new_post_id, "topic_id": topic_id},
                 )
                 return new_post_id
-    with connect() as tx:
-        post_data = {"title": title, "content": content}
-
-        if tags:
-            post_data["tags"] = tags
-
-        if url:
-            post_data["url"] = url
-
-        post_id = tx[TABLENAME].insert(post_data)
-
-        if topic_id:
-            topic_posts = tx["topic_posts"]
-            topic_posts.insert({"blog_post_id": post_id, "topic_id": topic_id})
-
-        return post_id
 
 
 def post(post_id):
