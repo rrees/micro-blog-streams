@@ -34,6 +34,11 @@ create = """INSERT INTO blogpost ({})
 VALUES ({})
 RETURNING id"""
 
+update = """UPDATE blogpost
+SET ({}) = ({})
+WHERE id = %(post_id)s
+RETURNING id"""
+
 delete = """DELETE
 FROM blogpost
 WHERE id = %(post_id)s"""

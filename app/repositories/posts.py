@@ -1,16 +1,10 @@
 from app import models
 
-from .db import connection, connect, format_placeholders, pg_connect
+from .db import format_placeholders, pg_connect
 
 from . import mappers
 from . import queries
 from . import sql_queries
-
-TABLENAME = "blogpost"
-
-db = connection
-table = db[TABLENAME]
-topic_posts = db["topic_posts"]
 
 
 def post_mapper(post):
@@ -88,8 +82,12 @@ def by_topic(topic_id, recent=True, limit=None):
 
 
 def update_post(new_post_data):
-    with connect() as tx:
-        tx[TABLENAME].update(new_post_data, ["id"])
+    columns = [k for k in new_post_data.keys() if k != "id"]
+    query = format_placeholders(sql_queries.posts.update, columns)
+
+    new_post_data["post_id"] = new_post_data["id"]
+
+    execute_statement(query, new_post_data)
 
 
 def with_title_matching(search_text):
