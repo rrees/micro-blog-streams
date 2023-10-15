@@ -3,8 +3,6 @@ import logging
 
 import flask
 
-from flask_sslify import SSLify
-
 from . import handlers
 from . import redis_utils
 from .auth_password.routes import auth_routes
@@ -24,9 +22,6 @@ app.config.update(
     SESSION_COOKIE_HTTPONLY=True,
     SESSION_COOKIE_SAMESITE="Strict",
 )
-
-if not ENV == "DEV":
-    sslify = SSLify(app)
 
 logger = app.logger
 
