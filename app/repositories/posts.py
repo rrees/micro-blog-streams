@@ -80,10 +80,7 @@ def by_topic(topic_id, recent=True, limit=None):
     query = sql_queries.posts.by_topic
     params = {"topic_id": topic_id, "limit": limit}
 
-    with pg_connect() as conn:
-        with conn.cursor() as cursor:
-            cursor.execute(query, params)
-            return [post_mapper(r) for r in cursor]
+    return query_posts(query, params)
 
 
 def update_post(new_post_data):

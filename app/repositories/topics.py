@@ -44,8 +44,14 @@ def archived(order_by=None):
 
 
 def update(new_topic_data):
-    with connect() as tx:
-        tx[TABLENAME].update(new_topic_data, ["id"])
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            with conn.transaction():
+                statement = format_placeholders(
+                    sql_queries.topics.update,
+                    [k for k in new_topic_data.keys() if k != "topic_id"],
+                )
+                cursor.execute(statement, new_topic_data)
 
 
 def topic(topic_id):
@@ -74,17 +80,15 @@ def delete(topic_id):
 
 
 def add_post_to_topic(post_id, topic_id):
-    with connect() as tx:
-        row = {"blog_post_id": post_id, "topic_id": topic_id}
-        tx["topic_posts"].insert_ignore(row, ["blog_post_id", "topic_id"])
-        return post_id
+    params = {"post_id": post_id, "topic_id": topic_id}
+    execute_statement(sql_queries.topic_posts.add, params)
+    return post_id
 
 
 def remove_post_from_topic(post_id, topic_id):
-    with connect() as tx:
-        row_filter = {"blog_post_id": post_id, "topic_id": topic_id}
-        tx["topic_posts"].delete(**row_filter)
-        return post_id
+    params = {"post_id": post_id, "topic_id": topic_id}
+    execute_statement(sql_queries.topic_posts.delete, params)
+    return topic_id
 
 
 def active_flag(topic_id, active_flag):

@@ -66,7 +66,7 @@ def edit_post(post_id):
 def edit_topic(topic_id):
     edit_topic_form = forms.Topic(flask.request.form)
     if edit_topic_form.validate():
-        update_data = {"id": topic_id, "title": edit_topic_form.title.data}
+        update_data = {"topic_id": topic_id, "title": edit_topic_form.title.data}
 
         if edit_topic_form.description.data:
             update_data["description"] = edit_topic_form.description.data

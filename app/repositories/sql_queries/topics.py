@@ -34,3 +34,7 @@ WHERE id= %(topic_id)s"""
 active_flag = """UPDATE topic
 SET active = %(active_flag)s
 WHERE id = %(topic_id)s"""
+
+update = """UPDATE topic
+SET ({}) = ({})
+WHERE id = %(topic_id)s"""
