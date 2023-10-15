@@ -1,6 +1,6 @@
 from app import models
 
-from .db import connection, connect, pg_connect
+from .db import connection, connect, format_placeholders, pg_connect
 
 from . import mappers
 from . import queries
@@ -47,6 +47,25 @@ def latest(limit=20):
 
 
 def create(title, content, tags=None, topic_id=None, url=None):
+    post_data = {"title": title, "content": content}
+
+    if tags:
+        post_data["tags"] = tags
+
+    if url:
+        post_data["url"] = url
+
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            with conn.transaction():
+                query = format_placeholders(sql_queries.posts.create, post_data.keys())
+                cursor.execute(query, post_data)
+                new_post_id = cursor.fetchone()["id"]
+                cursor.execute(
+                    sql_queries.topic_posts.add,
+                    {"post_id": new_post_id, "topic_id": topic_id},
+                )
+                return new_post_id
     with connect() as tx:
         post_data = {"title": title, "content": content}
 
@@ -89,11 +108,8 @@ def update_post(new_post_data):
 
 
 def with_title_matching(search_text):
-    with pg_connect() as conn:
-        with conn.cursor() as cursor:
-            params = {"search_text": f"%{search_text}%"}
-            cursor.execute(sql_queries.posts.search_by_title, params)
-            return [post_mapper(r) for r in cursor]
+    params = {"search_text": f"%{search_text}%"}
+    return query_posts(sql_queries.posts.search_by_title, params)
 
 
 def with_tag(tag):

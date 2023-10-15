@@ -30,6 +30,10 @@ remove_topic = """DELETE FROM topic_posts
 WHERE topic_id = %(topic_id)s
 AND blog_post_id = %(post_id)s"""
 
+create = """INSERT INTO blogpost ({})
+VALUES ({})
+RETURNING id"""
+
 delete = """DELETE
 FROM blogpost
 WHERE id = %(post_id)s"""

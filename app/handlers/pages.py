@@ -121,7 +121,7 @@ def edit_post_topics(post_id):
         "posts/edit-topics.html",
         post=repositories.posts.post(post_id),
         post_topics=repositories.topics.for_post(post_id),
-        all_topics=repositories.topics.all(order_by="name"),
+        all_topics=repositories.topics.all(),
     )
 
 
