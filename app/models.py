@@ -18,9 +18,11 @@ class BlogPost(NamedTuple):
     title: str
     content: str
     tags: List[str]
+    url: str
     updated: datetime
 
+
 @dataclass(frozen=True)
-class ReturnLink():
-    path:str
+class ReturnLink:
+    path: str
     text: str

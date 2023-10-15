@@ -21,6 +21,7 @@ def post_mapper(post):
         title=post["title"],
         content=post["content"],
         tags=post["tags"],
+        url=post["url"],
         updated=post["updated"],
     )
 

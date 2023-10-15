@@ -13,16 +13,20 @@ def new_post():
     new_post_form = forms.Post(flask.request.form)
 
     if new_post_form.validate():
-        # return flask.redirect(url_for('post', post_id=new_post_id))
-
         topic_id = new_post_form.topic_id.data
         tags = tag_manager.process(new_post_form.tags.data)
+
+        url = None
+
+        if new_post_form.url.data:
+            url = new_post_form.url.data
 
         new_post = posts_repository.create(
             new_post_form.title.data,
             new_post_form.content.data,
             topic_id=topic_id,
             tags=tags,
+            url=url,
         )
 
         if topic_id:

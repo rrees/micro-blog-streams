@@ -33,3 +33,9 @@ blockquote {
 .edit-post-topics--topic-list > li {
 	line-height: 3;
 }
+
+.post-editor-text {
+	font-family: serif;
+	font-size: large;
+	line-height: 1.4;
+}
