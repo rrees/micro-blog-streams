@@ -1,11 +1,8 @@
-from .db import connect, execute_statement, format_placeholders, pg_connect
+from .db import execute_statement, format_placeholders, pg_connect
 
 from . import sql_queries
 
 from . import mappers, queries
-
-
-TABLENAME = "topic"
 
 
 def read_topics(query, params=None):
