@@ -9,7 +9,7 @@ ORDER BY title"""
 
 archived_topics = """SELECT *
 FROM topic
-WHERE active = true
+WHERE active = false
 ORDER BY title"""
 
 topic_by_id = """SELECT *
@@ -20,9 +20,13 @@ search_by_title = """SELECT *
 FROM topic
 WHERE title ilike %(search_text)s"""
 
-for_post = """SELECT topic_id
-FROM topic_posts
-WHERE blog_post_id = %(post_id)s"""
+for_post = """SELECT *
+FROM topic
+WHERE id IN (
+	SELECT topic_id
+	FROM topic_posts
+	WHERE blog_post_id = %(post_id)s
+)"""
 
 create = """INSERT INTO topic ({})
 VALUES ({})

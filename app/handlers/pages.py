@@ -35,7 +35,7 @@ def all_posts():
 def topics():
     return flask.render_template(
         "topics.html",
-        topics=repositories.topics.active(order_by="name"),
+        topics=repositories.topics.active(),
     )
 
 
@@ -44,7 +44,7 @@ def all_topics():
     return flask.render_template(
         "topics.html",
         page_title="All Topics",
-        topics=repositories.topics.all(order_by="name"),
+        topics=repositories.topics.all(),
     )
 
 
@@ -53,7 +53,7 @@ def archived_topics():
     return flask.render_template(
         "topics.html",
         page_title="Archived Topics",
-        topics=repositories.topics.archived(order_by="name"),
+        topics=repositories.topics.archived(),
     )
 
 

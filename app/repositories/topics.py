@@ -8,6 +8,16 @@ from . import mappers, queries
 TABLENAME = "topic"
 
 
+def read_topics(query, params=None):
+    if not params:
+        params = {}
+
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(query, params)
+            return [mappers.topic_mapper(row) for row in cursor.fetchall()]
+
+
 def create(topic_name, description=None):
     new_topic = {"title": topic_name}
 
@@ -22,25 +32,16 @@ def create(topic_name, description=None):
                 return cursor.fetchone()["id"]
 
 
-def all(order_by=None):
-    with pg_connect() as conn:
-        with conn.cursor() as cursor:
-            cursor.execute(sql_queries.topics.all_topics)
-            return [mappers.topic_mapper(row) for row in cursor.fetchall()]
+def all():
+    return read_topics(sql_queries.topics.all_topics)
 
 
-def active(order_by=None):
-    with pg_connect() as conn:
-        with conn.cursor() as cursor:
-            cursor.execute(sql_queries.topics.active_topics)
-            return [mappers.topic_mapper(row) for row in cursor.fetchall()]
+def active():
+    return read_topics(sql_queries.topics.active_topics)
 
 
-def archived(order_by=None):
-    with pg_connect() as conn:
-        with conn.cursor() as cursor:
-            cursor.execute(sql_queries.topics.archived_topics)
-            return [mappers.topic_mapper(row) for row in cursor.fetchall()]
+def archived():
+    return read_topics(sql_queries.topics.archived_topics)
 
 
 def update(new_topic_data):
@@ -62,10 +63,7 @@ def topic(topic_id):
 
 
 def for_post(post_id):
-    with pg_connect() as conn:
-        with conn.cursor() as cursor:
-            cursor.execute(sql_queries.topics.for_post, {"post_id": post_id})
-            return [topic(result["topic_id"]) for result in cursor.fetchall()]
+    return read_topics(sql_queries.topics.for_post, {"post_id": post_id})
 
 
 def delete(topic_id):
@@ -98,9 +96,5 @@ def active_flag(topic_id, active_flag):
 
 
 def search_by_title(search_text):
-    with pg_connect() as conn:
-        with conn.cursor() as cursor:
-            params = {"search_text": f"%{search_text}%"}
-            cursor.execute(sql_queries.topics.search_by_title, params)
-
-            return [mappers.topic_mapper(row) for row in cursor.fetchall()]
+    params = {"search_text": f"%{search_text}%"}
+    return read_topics(sql_queries.topics.search_by_title, params)
