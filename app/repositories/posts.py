@@ -1,6 +1,6 @@
 from app import models
 
-from .db import format_placeholders, pg_connect
+from .db import execute_statement, format_placeholders, pg_connect
 
 from . import mappers
 from . import queries
