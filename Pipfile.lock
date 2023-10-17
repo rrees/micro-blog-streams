@@ -21,14 +21,6 @@
         ]
     },
     "default": {
-        "async-timeout": {
-            "hashes": [
-                "sha256:4640d96be84d82d02ed59ea2b7105a0f7b33abe8703703cd0ab0bf87c427522f",
-                "sha256:7405140ff1230c310e51dc27b3145b9092d659ce68ff733fb0cefe3ee42be028"
-            ],
-            "markers": "python_full_version <= '3.11.2'",
-            "version": "==4.0.3"
-        },
         "blinker": {
             "hashes": [
                 "sha256:152090d27c1c5c722ee7e48504b02d76502811ce02e1523553b4cf8c8b3d3a8d",
@@ -50,14 +42,13 @@
                 "sha256:21128f47e4e3b9d597a3e8521a329bf56909b690fcc3fa3e477725aa81367638",
                 "sha256:cfadcdb638b609361d29ec22360d6070a77d7463dcb3ab08d2c2f2f168845f58"
             ],
-            "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==3.0.0"
         },
         "flask-sslify": {
             "hashes": [
                 "sha256:d33e1d3c09cd95154176aa8a7319418e52129fc482dd56d8a8ad7c24500d543e"
             ],
-            "index": "pypi",
             "version": "==0.1.5"
         },
         "gunicorn": {
@@ -66,6 +57,7 @@
                 "sha256:88ec8bff1d634f98e61b9f65bc4bf3cd918a90806c6f5c48bc5603849ec81033"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.5'",
             "version": "==21.2.0"
         },
         "itsdangerous": {
@@ -156,6 +148,7 @@
                 "sha256:fc7f93ded930c92394ef2cb6f04a8aabab4117a91449e72dcc8dfa646a508be8"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==3.0.2"
         },
         "packaging": {
@@ -174,7 +167,7 @@
                 "sha256:8ec5230d6a7eb654b4fb3cf2d3eda8871d68f24807b934790504467f1deee9f8",
                 "sha256:cec7ad2bc6a8510e56c45746c631cf9394148bdc8a9a11fd8cf8554ce129ae78"
             ],
-            "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==3.1.12"
         },
         "psycopg-binary": {
@@ -320,6 +313,7 @@
                 "sha256:f9b5571d33660d5009a8b3c25dc1db560206e2d2f89d3df1cb32d72c0d117d52"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==2.9.9"
         },
         "redis": {
@@ -328,6 +322,7 @@
                 "sha256:ed4802971884ae19d640775ba3b03aa2e7bd5e8fb8dfaed2decce4d0fc48391f"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==5.0.1"
         },
         "rrees-tag-manager": {
@@ -359,6 +354,7 @@
                 "sha256:addd7899004fdf9318eb711d33aae9c1973fe80378257b7383e06de2eff7c559"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.8'",
             "version": "==3.1.0"
         }
     },
@@ -377,6 +373,7 @@
                 "sha256:98736ffd7a8c48fd2bfb53d898a475f4241bde0b672125706af04d9d08fd3dbd"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.7'",
             "version": "==0.24"
         },
         "certifi": {
@@ -615,6 +612,7 @@
                 "sha256:a8611ec40d1bd23bf3deaed64045452d8a9b019edd13a666e66d7e2d0a18f177"
             ],
             "index": "pypi",
+            "markers": "python_version >= '3.2'",
             "version": "==2.3"
         },
         "opster": {
@@ -664,11 +662,12 @@
         },
         "urllib3": {
             "hashes": [
-                "sha256:7a7c7003b000adf9e7ca2a377c9688bbc54ed41b985789ed576570342a375cd2",
-                "sha256:b19e1a85d206b56d7df1d5e683df4a7725252a964e3993648dd0fb5a1c157564"
+                "sha256:c97dfde1f7bd43a71c8d2a58e369e9b2bf692d1334ea9f9cae55add7d0dd0f84",
+                "sha256:fdb6d215c776278489906c2f8916e6e7d4f5a9b602ccbcfdf7f016fc8da0596e"
             ],
+            "index": "pypi",
             "markers": "python_version >= '3.7'",
-            "version": "==2.0.6"
+            "version": "==2.0.7"
         },
         "wcwidth": {
             "hashes": [
