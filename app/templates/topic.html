@@ -4,7 +4,7 @@
 
 {% block content %}
 <div class="container-lg">
-    <h1>{{topic.title}}</h1>
+    <h1 class="h1">{{topic.title}}</h1>
 
     {% if topic.description %}
     <p>{{topic.description}}</p>
@@ -14,11 +14,20 @@
 
     <h2>Write a new post</h2>
 
-    {% include 'posts/fragments/new-post-form.html' %}
+    <div class="my-3">
+        <details>
+            <summary class="mb-3"><strong>Post editor</strong></summary>
 
-    <h2>Recent posts on {{topic.title}}</h2>
+            {% include 'posts/fragments/new-post-form.html' %}
 
+        </details>
+    </div>
+
+    <h2 class="h2">Posts for {{topic.title}}</h2>
+
+    <div class="post-list">
     {% include 'posts/fragments/recent-posts.html' %}
+    </div>
 
     <p>See <a href="{{url_for('all_posts_for_topic', topic_id=topic.id)}}">all posts</a> for {{topic.title}}</p>
 </div>

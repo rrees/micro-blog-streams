@@ -1,4 +1,7 @@
-<form method="POST" action="{{url_for('new_post_form')}}"
+<form
+	id="new-post-form"
+	method="POST"
+	action="{{url_for('new_post_form')}}"
 	class="mb-3">
 
 {% include 'posts/fragments/post-form.html' %}
