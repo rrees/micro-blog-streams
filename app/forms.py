@@ -5,7 +5,7 @@ from wtforms import fields
 class Post(Form):
     title = fields.StringField("Title", [validators.InputRequired()])
     content = fields.TextAreaField("Content", [validators.InputRequired()])
-    topic_id = fields.IntegerField()
+    topic_id = fields.IntegerField("Topic Id", [validators.Optional()])
     url = fields.StringField("URL", [validators.Optional()])
     tags = fields.StringField("Tags", [validators.Optional()])
 

@@ -56,10 +56,12 @@ def create(title, content, tags=None, topic_id=None, url=None):
                 query = format_placeholders(sql_queries.posts.create, post_data.keys())
                 cursor.execute(query, post_data)
                 new_post_id = cursor.fetchone()["id"]
-                cursor.execute(
-                    sql_queries.topic_posts.add,
-                    {"post_id": new_post_id, "topic_id": topic_id},
-                )
+
+                if topic_id:
+                    cursor.execute(
+                        sql_queries.topic_posts.add,
+                        {"post_id": new_post_id, "topic_id": topic_id},
+                    )
                 return new_post_id
 
 
