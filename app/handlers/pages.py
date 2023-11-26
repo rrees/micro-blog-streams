@@ -207,3 +207,20 @@ def search_topics_by_title():
         )
 
     flask.abort(400, "Form information incorrect")
+
+
+def manifest():
+    manifest = {
+        "name": "Micro Blog Streams",
+        "display": "browser",
+        "start_url": flask.url_for("index"),
+        "icons": [
+            {
+                "src": flask.url_for(
+                    "static", filename="images/micro-blog-stream-logo.svg"
+                ),
+                "sizes": "any",
+            }
+        ],
+    }
+    return flask.jsonify(manifest)

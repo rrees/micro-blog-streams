@@ -117,6 +117,12 @@ routes = [
         handlers.pages.search_topics_by_title,
         ["POST"],
     ),
+    (
+        "/manifest.json",
+        "manifest",
+        handlers.pages.manifest,
+        ["GET"],
+    ),
 ]
 
 routes = routes + auth_routes + handlers.navigation.navigation_routes
