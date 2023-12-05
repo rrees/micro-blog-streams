@@ -1,0 +1,52 @@
+{% extends 'default.html' %}
+
+{% block title %}Menu | Navigation{% endblock %}
+
+{% block content %}
+<h1>Menu</h1>
+
+<div class="container-fluid">
+    <h2>Topics</h2>
+
+    <nav>
+        <ul class="navigation-menu">
+            <li>
+                <a
+                    class="navigation-menu--item"
+                    href="{{url_for('topics')}}"
+                    >Topics</a>
+            </li>
+            <li>
+                <a
+                    class="navigation-menu--item"
+                    href="{{url_for('all_topics')}}"
+                    >All Topics</a>
+            </li>
+            <li>
+                <a
+                    class="navigation-menu--item"
+                    href="{{url_for('archived_topics')}}"
+                    >Archived Topics</a>
+            </li>
+            <li>
+                 <a href="{{url_for('new_topic')}}">Create new topic</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div class="container-fluid">
+    <h2>Posts</h2>
+
+    <nav>
+        <ul class="navigation-menu">
+            <li>
+                <a class="navigation-menu--item" href="{{url_for('recent')}}">Recent posts</a>
+            </li>
+            <li>
+                <a class="navigation-menu--item" href="{{url_for('all_posts')}}">All posts</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+{% endblock %}

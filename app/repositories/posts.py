@@ -121,3 +121,8 @@ def delete(post_id):
                 cursor.execute(sql_queries.posts.remove_all_topics, parameters)
                 cursor.execute(sql_queries.posts.delete, parameters)
                 return post_id
+
+
+def with_content_matching(search_text):
+    params = {"search_text": f"%{search_text}%"}
+    return query_posts(sql_queries.posts.search_content, params)

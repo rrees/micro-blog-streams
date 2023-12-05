@@ -50,3 +50,8 @@ WHERE blog_post_id = %(post_id)s"""
 search_by_title = """SELECT *
 FROM blogpost
 WHERE title ilike %(search_text)s"""
+
+search_content = """SELECT *
+FROM blogpost
+WHERE content ilike %(search_text)s
+"""
