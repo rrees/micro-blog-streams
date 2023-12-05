@@ -220,6 +220,8 @@ def manifest():
                     "static", filename="images/micro-blog-stream-logo.svg"
                 ),
                 "sizes": "any",
+                "type": "image/svg+xml",
+                "purpose": "maskable",
             }
         ],
     }
