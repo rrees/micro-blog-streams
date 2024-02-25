@@ -55,3 +55,7 @@ search_content = """SELECT *
 FROM blogpost
 WHERE content ilike %(search_text)s
 """
+
+search_by_tag = """SELECT *
+FROM blogpost
+WHERE %(tag_name)s = ANY(tags)"""
