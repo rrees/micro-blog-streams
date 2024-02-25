@@ -16,12 +16,10 @@ bpython = "*"
 gunicorn = "*"
 redis = "*"
 Flask = "*"
-Flask-SSLify = "*"
 wtforms = "*"
-psycopg2-binary = "*"
 mistune = "*"
-rrees-tag-manager = {version="*", index="rrees-pypi"}
 psycopg = {extras = ["binary"], version = "*"}
+rrees-tag-manager = {version = "*", index = "rrees-pypi"}
 
 [requires]
-python_version = "3.11"
+python_version = "3.12"
