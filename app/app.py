@@ -28,6 +28,7 @@ logger = app.logger
 routes = [
     ("/", "index", handlers.pages.front_page, ["GET"]),
     ("/home", "home", handlers.pages.home, ["GET"]),
+    ("/everything", "everything", handlers.pages.everything, ["GET"]),
     ("/recent", "recent", handlers.pages.recent_posts, ["GET"]),
     ("/topics", "topics", handlers.pages.topics, ["GET"]),
     ("/topics/all", "all_topics", handlers.pages.all_topics, ["GET"]),

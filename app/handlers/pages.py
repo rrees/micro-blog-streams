@@ -12,6 +12,11 @@ def front_page():
 
 @login_required
 def home():
+    return flask.render_template("navigation/menu.html")
+
+
+@login_required
+def everything():
     posts = repositories.posts.latest(limit=50)
     topics = repositories.topics.active()
     return flask.render_template("home.html", posts=posts, topics=topics)

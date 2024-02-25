@@ -1,0 +1,33 @@
+{% extends 'default.html' %}
+
+{% block title %}Everything{% endblock %}
+
+{% block content %}
+<div class="container-fluid">
+    <h1>Home</h1>
+
+    <div class="home-page-summaries mx-4">
+        <div class="home-page-summaries--topics mr-2">
+            <h2>Topics</h2>
+
+           {% if topics %}
+             <ul>
+            	{% for topic in topics %}
+            	<li><a href="{{url_for('topic', topic_id=topic.id)}}">{{topic.title}}</a>  <time datetime="{{topic.updated | iso_date}}">({{topic.updated | iso_date}})</time></li>
+            	{% endfor %}
+            </ul>
+            {% endif %}
+        </div>
+
+        <div class="home-page-summaries--posts">
+            <h2>Posts</h2>
+
+            <ul>
+                {% for post in posts %}
+                <li><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a> <time datetime="{{post.updated | iso_date}}">({{post.updated | iso_date}})<time></li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
