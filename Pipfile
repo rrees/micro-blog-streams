@@ -22,4 +22,4 @@ psycopg = {extras = ["binary"], version = "*"}
 rrees-tag-manager = {version = "*", index = "rrees-pypi"}
 
 [requires]
-python_version = "3.12"
+python_version = "3.11"
