@@ -175,7 +175,9 @@ def search_posts_by_title():
 def posts_by_tag(tag):
     posts = repositories.posts.with_tag(tag)
     return flask.render_template(
-        "posts-list.html", page_title=f"Search results for tag {tag}", posts=list(posts)
+        "posts-list.html",
+        page_title=f'Search results for tag "{tag}"',
+        posts=list(posts),
     )
 
 

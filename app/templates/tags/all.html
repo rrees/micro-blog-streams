@@ -7,6 +7,15 @@
     <h1>All Tags</h1>
 
     <div class="tag-list">
+        {% if tags %}
+        <ol class="tag-cloud">
+        {% for tag in tags %}
+        <li><a href="{{ url_for('posts_by_tag', tag=tag) }}">{{tag}}</a></li>
+        {% endfor %}
+        </ol>
+        {% else %}
+        <p>No tags present</p>
+        {% endif %}
     </div>
 </div>
 {% endblock %}
