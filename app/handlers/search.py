@@ -39,6 +39,22 @@ def search_posts_by_title():
 
 
 @login_required
+def search_posts_by_content():
+    search_form = search_forms.SearchForm(flask.request.form)
+    return_link = None
+
+    if search_form.validate():
+        return flask.render_template(
+            "posts-list.html",
+            page_title="Search results",
+            posts=[],
+            return_link=return_link,
+        )
+
+    flask.abort(400, "Form information incorrect")
+
+
+@login_required
 def search_topics_by_title():
     search_form = search_forms.SearchForm(flask.request.form)
     return_link = None
@@ -67,6 +83,12 @@ search_routes = [
         "/search/posts/title",
         "search_posts_by_title",
         search_posts_by_title,
+        ["POST"],
+    ),
+    (
+        "/search/posts/content",
+        "search_posts_by_content",
+        search_posts_by_content,
         ["POST"],
     ),
     (
