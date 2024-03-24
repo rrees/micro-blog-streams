@@ -105,19 +105,6 @@ routes = [
     ),
     ("/posts/all", "all_posts", handlers.pages.all_posts, ["GET"]),
     ("/posts/all/tag/<tag>", "posts_by_tag", handlers.pages.posts_by_tag, ["GET"]),
-    ("/search", "search", handlers.pages.search, ["GET"]),
-    (
-        "/search/posts/title",
-        "search_posts_by_title",
-        handlers.pages.search_posts_by_title,
-        ["POST"],
-    ),
-    (
-        "/search/topics/title",
-        "search_topics_by_title",
-        handlers.pages.search_topics_by_title,
-        ["POST"],
-    ),
     (
         "/manifest.json",
         "manifest",
@@ -131,6 +118,7 @@ routes = (
     + auth_routes
     + handlers.navigation.navigation_routes
     + handlers.tags.tag_routes
+    + handlers.search.search_routes
 )
 
 for path, endpoint, handler, methods in routes:
