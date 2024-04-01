@@ -10,7 +10,15 @@
 
     <ul>
     	{% for post in posts %}
-    	<li><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a> ({{post.updated | iso_date}})</li>
+    	<li>
+            <a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a> ({{post.updated | iso_date}})
+            {% if preview_content %}
+            <details>
+                <summary>View content</summary>
+                {{post.content | markdown | safe}}
+            </details>
+            {% endif %}
+        </li>
     	{% endfor %}
     </ul>
     {% else %}

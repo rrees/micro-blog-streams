@@ -44,11 +44,14 @@ def search_posts_by_content():
     return_link = None
 
     if search_form.validate():
+        posts = repositories.posts.with_content_matching(search_form.search_term.data)
+
         return flask.render_template(
             "posts-list.html",
             page_title="Search results",
-            posts=[],
+            posts=posts,
             return_link=return_link,
+            preview_content=True,
         )
 
     flask.abort(400, "Form information incorrect")

@@ -54,6 +54,7 @@ WHERE title ilike %(search_text)s"""
 search_content = """SELECT *
 FROM blogpost
 WHERE content ilike %(search_text)s
+ORDER BY updated DESC
 """
 
 search_by_tag = """SELECT *
