@@ -1,8 +1,13 @@
-
 blockquote {
 	border-left: solid grey;
 	padding-left: 1rem;
 }
+
+.page-content {
+	max-width: 100ch;
+	margin-inline: auto;
+}
+
 
 .home-page-summaries {
 	display: flex;
@@ -48,4 +53,9 @@ blockquote {
 	flex-wrap: wrap;
 	column-gap: 2rem;
 	row-gap: 1rem;
+}
+
+.post-form {
+	margin-inline: auto;
+	max-width: 90ch;
 }
