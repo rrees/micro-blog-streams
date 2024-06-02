@@ -11,11 +11,18 @@
     </nav>
 
     {% if topics %}
-    <ol class="topic-list">
+    <topic-filter>
+    <div class="mb-3" hidden>
+        <label for="topic-filter">Filter</label>
+        <input id="topic-filter" type="text">
+    </div>
+
+    <ol class="topic-list ps-0">
     	{% for topic in topics %}
     	<li class="me-md-4 mb-2 mb-md-3"><a href="/topic/{{topic.id}}">{{topic.title}}</a></li>
     	{% endfor %}
     </ol>
+    </topic-filter>
     {% endif %}
 
     {% if return_link %}
