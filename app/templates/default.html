@@ -35,6 +35,10 @@
         <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}" >
         <link rel="manifest" href="/manifest.json" />
 
+        {% block additional_scripts %}
+        {% endblock %}
+    </head>
+
     <body>
 		{% block navbar %}
         {% include 'navigation/navbar.html' %}

@@ -2,6 +2,10 @@
 
 {% block title %}{{page_title | default("Topics")}}{% endblock %}
 
+{% block additional_scripts %}
+<script type="module" src="/static/components/topic-filter.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container-lg">
     <h1>{{page_title | default("Topics")}}</h1>
@@ -12,7 +16,7 @@
 
     {% if topics %}
     <topic-filter>
-    <div class="mb-3" hidden>
+    <div id="topic-filter-wrapper" class="mb-3" hidden>
         <label for="topic-filter">Filter</label>
         <input id="topic-filter" type="text">
     </div>
