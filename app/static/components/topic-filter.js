@@ -15,7 +15,6 @@ class TopicFilter extends HTMLElement {
 		wrapper.removeAttribute('hidden');
 
 		filter.addEventListener('input', (event) => {
-			console.log('Filter change', event.target.value);
 			const filterRegularExpression = new RegExp(event.target.value, "i");
 
 			const topics = document.querySelectorAll('.topic');
