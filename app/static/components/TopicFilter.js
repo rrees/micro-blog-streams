@@ -1,6 +1,3 @@
-
-console.log('Hello world');
-
 class TopicFilter extends HTMLElement {
 	constructor() {
 		super();
