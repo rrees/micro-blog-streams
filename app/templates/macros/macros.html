@@ -1,0 +1,14 @@
+{% macro post_link(post) %}
+<details>
+	<summary>{{post.title}} ({{post.updated | iso_date}})</summary>
+	
+	<div class="my-1">
+	{{post.content | markdown | safe}}
+	</div>
+
+</details>
+
+{% with spacing_class = "mb-3" %}
+{% include 'posts/fragments/post-actions.html' %}
+{% endwith %}
+{% endmacro %}

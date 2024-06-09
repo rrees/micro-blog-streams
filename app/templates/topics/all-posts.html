@@ -1,5 +1,7 @@
 {% extends 'default.html' %}
 
+{% from 'macros/macros.html' import post_link %}
+
 {% block title %}All posts for {{topic.title}}{% endblock %}
 
 {% block content %}
@@ -10,14 +12,13 @@
 
     {% if posts %}
 
-    <ul>
+    <ol class="post-list">
     	{% for post in posts %}
-    	<li><a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a> ({{post.updated | iso_date}})</li>
+    	<li>{{ post_link(post) }}</li>
     	{% endfor %}
-    </ul>
+    </ol>
     {% else %}
-    <p>No posts written for topic yet</p>
-    
+    <p>No posts written for topic yet</p> 
     {% endif %}
 </div>
 {% endblock %}
