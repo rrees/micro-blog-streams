@@ -59,7 +59,3 @@ blockquote {
 	margin-inline: auto;
 	max-width: 90ch;
 }
-
-.navbar-nav {
-	gap:2rem;
-}

@@ -22,4 +22,4 @@ RUN apt update && apt upgrade
 WORKDIR /app
 COPY --from=builder /app .
 
-CMD [ "/app/.venv/bin/gunicorn", "--bind=0.0.0.0:8080", "--worker-tmp-dir", "/dev/shm",   "app.app:app"]
+CMD [ "/app/.venv/bin/pipenv", "run", "gunicorn", "--bind=0.0.0.0:8080", "--worker-tmp-dir", "/dev/shm",   "app.app:app"]

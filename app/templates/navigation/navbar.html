@@ -2,9 +2,12 @@
 	d-flex
 		justify-content-start
 		align-items-center">
-  <a class="navbar-brand me-3" href="{{url_for('home')}}">Micro Blog Streams</a>
+  <a class="navbar-brand me-4" href="{{url_for('home')}}">Micro Blog Streams</a>
 
-	<ul class="navbar-nav d-flex flex-row">
+	<ul class="navbar-nav
+		d-flex
+		flex-row
+		gap-3">
 		<li class="nav-item ">
 			<a class="nav-link" href="{{url_for('topics')}}">Current Topics</a>
 		</li>
