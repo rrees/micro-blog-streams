@@ -8,6 +8,11 @@ blockquote {
 	margin-inline: auto;
 }
 
+.navbar {
+	max-width: 120ch;
+	margin-inline: auto;
+}
+
 
 .home-page-summaries {
 	display: flex;

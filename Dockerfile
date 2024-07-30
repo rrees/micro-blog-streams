@@ -10,8 +10,7 @@ ENV PYTHONUNBUFFERED=1 \
 WORKDIR /app
 COPY . .
 
-RUN pip install pipenv
-RUN pipenv install
+RUN pip install pipenv && pipenv install
 
 FROM python:${PYTHON_VERSION}-slim-bookworm
 
@@ -22,4 +21,6 @@ RUN apt update && apt upgrade
 WORKDIR /app
 COPY --from=builder /app .
 
-CMD [ "/app/.venv/bin/pipenv", "run", "gunicorn", "--bind=0.0.0.0:8080", "--worker-tmp-dir", "/dev/shm",   "app.app:app"]
+RUN pip install pipenv
+
+CMD [ "pipenv", "run", "gunicorn", "--bind=0.0.0.0:8080", "--worker-tmp-dir", "/dev/shm",   "app.app:app"]
