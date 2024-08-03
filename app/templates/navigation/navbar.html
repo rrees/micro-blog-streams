@@ -1,14 +1,18 @@
 <nav class="navbar navbar-light bg-light
 	mb-1
 	d-flex
-		justify-content-start
-		align-items-center">
-  <a class="navbar-brand ps-3 me-4" href="{{url_for('home')}}">Micro Blog Streams</a>
+		flex-wrap
+		justify-content-start">
+  <a class="navbar-brand ps-2 me-3" href="{{url_for('home')}}">Micro Blog Streams</a>
 
 	<ul class="navbar-nav
+		ps-2
 		d-flex
-		flex-row
-		gap-3">
+			flex-row
+			flex-wrap
+			justify-content-start
+			gap-3
+			row-gap-1">
 		<li class="nav-item ">
 			<a class="nav-link" href="{{url_for('topics')}}">Current Topics</a>
 		</li>
