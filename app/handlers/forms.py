@@ -1,6 +1,6 @@
 import flask
 
-from rrees_tag_manager import tags as tag_manager
+from app import tags as tag_manager
 
 from app.auth_password.decorators import login_required
 from app import forms

@@ -3,10 +3,6 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
-[[source]]
-url = "https://packagecloud.io/rrees/libs/pypi/simple"
-verify_ssl = true
-name = "rrees-pypi"
 
 [dev-packages]
 nomad = "*"
@@ -19,7 +15,6 @@ Flask = "*"
 wtforms = "*"
 mistune = "*"
 psycopg = {extras = ["binary"], version = "*"}
-rrees-tag-manager = {version = "*", index = "rrees-pypi"}
 
 [requires]
-python_version = "3.11"
+python_version = "3.13"
