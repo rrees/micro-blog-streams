@@ -1,6 +1,9 @@
 class TopicFilter extends HTMLElement {
+
+
 	constructor() {
 		super();
+		this.eventAbortController = new AbortController();
 	}
 
 	connectedCallback() {
@@ -26,7 +29,12 @@ class TopicFilter extends HTMLElement {
 					link.parentElement.setAttribute('hidden', 'hidden');
 				}
 			}
-		})
+		},
+		{signal: this.eventAbortController.signal})
+	}
+
+	disconnectedCallback() {
+		this.eventAbortController.abort();
 	}
 }
 
