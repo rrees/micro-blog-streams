@@ -1,29 +1,35 @@
 {% extends 'default.html' %}
 
-
 {% block title %}{{post.title}}{% endblock %}
+
+{% block additional_scripts %}
+<script type="module" src="/static/components/PostCopier.js"></script>
+{% endblock %}
 
 {% block content %}
 <div class="container-lg">
-    <h1>{{post.title}}</h1>
+	<post-copier>
+	    <h1>{{post.title}}</h1>
+
+		{% include "posts/fragments/post-actions.html" %}
+
+		<div class="post-content mb-5">
+			{{post.content | markdown | safe}}
+		</div>
+
+		{% if post.url %}
+		<div class="post-url">
+			<p>Link: <a href="{{post.url}}">{{post.url}}</a></p>
+		</div>
+		{% endif %}
 
 
-	{% include "posts/fragments/post-actions.html" %}
+		{% include 'posts/fragments/tags.html' %}
 
-	<div class="post-content mb-5">
-		{{post.content | markdown | safe}}
-	</div>
+		{% include 'posts/fragments/show-topics.html' %}
 
-	{% if post.url %}
-	<div class="post-url">
-		<p>Link: <a href="{{post.url}}">{{post.url}}</a></p>
-	</div>
-	{% endif %}
+		{% include 'posts/fragments/raw-post-content.html' %}
 
-
-	{% include 'posts/fragments/tags.html' %}
-
-	{% include 'posts/fragments/show-topics.html' %}
-
+	</post-copier>
 </div>
 {% endblock %}

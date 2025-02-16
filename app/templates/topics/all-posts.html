@@ -12,9 +12,9 @@
 
     {% if posts %}
 
-    <ol class="post-list">
+    <ol class="post-list list-group">
     	{% for post in posts %}
-    	<li>{{ post_link(post) }}</li>
+    	<li class="list-group-item border-0">{{ post_link(post) }}</li>
     	{% endfor %}
     </ol>
     {% else %}

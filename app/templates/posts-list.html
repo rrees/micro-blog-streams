@@ -8,9 +8,9 @@
 
     {% if posts %}
 
-    <ul>
+    <ul class="list-group">
     	{% for post in posts %}
-    	<li data-title="{{post.title}}" data-last-updated="{{post.updated}}">
+    	<li class="list-group-item border-0" data-title="{{post.title}}" data-last-updated="{{post.updated}}">
             <a href="{{url_for('post', post_id=post.id)}}">{{post.title}}</a> ({{post.updated | iso_date}})
             {% if preview_content %}
             <details>

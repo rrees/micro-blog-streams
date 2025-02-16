@@ -2,6 +2,10 @@
 
 {% block title %}{{topic.title}} | Topic {% endblock %}
 
+{% block additional_scripts %}
+<script type="module" src="/static/components/PostCopier.js"></script>
+{% endblock %}
+
 {% block content %}
 <div class="container-md">
     <h1 class="h1">{{topic.title}}</h1>

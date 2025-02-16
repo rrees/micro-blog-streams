@@ -64,3 +64,8 @@ blockquote {
 	margin-inline: auto;
 	max-width: 90ch;
 }
+
+.cluster {
+	display: flex;
+	gap: 2ex;
+}

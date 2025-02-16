@@ -1,9 +1,9 @@
 {% from 'macros/macros.html' import post_link %}
 
 {% if recent_posts %}
-<ol>
+<ol class="list-group	">
 	{% for post in recent_posts %}
-	<li>
+	<li class="list-group-item border-0">
 		{{ post_link(post) }}
 	</li>
 	{% endfor %}

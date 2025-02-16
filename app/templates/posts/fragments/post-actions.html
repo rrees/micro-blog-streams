@@ -1,7 +1,8 @@
 
-<div class="post-actions {{spacing_class|default('my-3')}}">
-	<a class="me-3" href="{{url_for('post', post_id=post.id)}}">View</a>
-	<a class="me-3" href="{{url_for('edit_post', post_id=post.id)}}">Edit</a>
-	<a class="me-3" href="{{url_for('edit_post_topics', post_id=post.id)}}">Edit Topics</a>
-	<a class="me-3" href="{{url_for('post_raw', post_id=post.id)}}">View Raw</a>
+<div class="post-actions cluster {{spacing_class|default('my-3')}}">
+	<a href="{{url_for('post', post_id=post.id)}}">View</a>
+	<a href="{{url_for('edit_post', post_id=post.id)}}">Edit</a>
+	<a href="{{url_for('edit_post_topics', post_id=post.id)}}">Edit Topics</a>
+	<a href="{{url_for('post_raw', post_id=post.id)}}">View Raw</a>
+	<button class="btn btn-link content-copier p-0 d-none" data-post-id="post-raw-{{post.id}}">Copy post content</button>
 </div>
