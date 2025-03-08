@@ -10,6 +10,10 @@
         {% include 'fragments/bootstrap.html' %}
 
         <link rel="stylesheet" href="{{ url_for('static', filename='custom.css') }}" >
+        <link rel="stylesheet"
+            media="print"
+            href="{{ url_for('static', filename='print.css') }}"/>
+
         <link rel="manifest" href="/manifest.json" />
 
         {% block additional_scripts %}

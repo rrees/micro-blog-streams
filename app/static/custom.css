@@ -11,6 +11,9 @@ blockquote {
 .navbar {
 	max-width: 120ch;
 	margin-inline: auto;
+	display: flex;
+	flex-wrap: wrap;
+	align-content: start;
 }
 
 
