@@ -10,6 +10,15 @@
 
     <p>Topic: <a href="{{url_for('topic', topic_id=topic.id)}}">{{topic.title}}</a></p>
 
+    <div class="my-3">
+        <details>
+            <summary class="mb-3"><strong>Post editor</strong></summary>
+
+            {% include 'posts/fragments/new-post-form.html' %}
+
+        </details>
+    </div>
+
     {% if posts %}
 
     <ol class="post-list list-group">
