@@ -17,4 +17,4 @@ mistune = "*"
 psycopg = {extras = ["binary"], version = "*"}
 
 [requires]
-python_version = "3.13"
+python_version = "3.14"
