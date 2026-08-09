@@ -4,3 +4,6 @@ serve:
 
 deploy:
 	flyctl deploy
+
+update:
+	pipenv update
