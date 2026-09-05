@@ -2,7 +2,7 @@ import datetime
 
 import mistune
 
-markdown_renderer = mistune.create_markdown(plugins=['def_list'])
+markdown_renderer = mistune.create_markdown(plugins=["def_list"])
 
 
 def markdown(markdown):

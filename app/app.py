@@ -75,6 +75,7 @@ routes = [
         ["GET"],
     ),
     ("/posts/new", "new_post", handlers.pages.new_post, ["GET"]),
+    ("/posts/quick", "quick_post", handlers.pages.quick_post, ["GET"]),
     ("/forms/post/new", "new_post_form", handlers.forms.new_post, ["POST"]),
     ("/post/<post_id>", "post", handlers.pages.post, ["GET"]),
     ("/post/<post_id>/raw", "post_raw", handlers.pages.post_raw, ["GET"]),

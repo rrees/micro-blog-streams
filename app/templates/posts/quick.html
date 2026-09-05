@@ -1,0 +1,11 @@
+{% extends 'default.html' %}
+
+{% block title %}Quick post{% endblock %}
+
+{% block content %}
+<div class="container-fluid post-form">
+    <h1>Quick post</h1>
+
+	{% include 'posts/fragments/new-post-form.html' %}
+</div>
+{% endblock %}

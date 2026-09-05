@@ -59,6 +59,13 @@ def topic(topic_id):
             return mappers.topic_mapper(cursor.fetchone())
 
 
+def by_title(title):
+    with pg_connect() as conn:
+        with conn.cursor() as cursor:
+            cursor.execute(sql_queries.topics.topic_by_title, (title,))
+            return mappers.topic_mapper(cursor.fetchone())
+
+
 def for_post(post_id):
     return read_topics(sql_queries.topics.for_post, {"post_id": post_id})
 

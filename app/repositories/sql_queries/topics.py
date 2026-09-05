@@ -16,6 +16,10 @@ topic_by_id = """SELECT *
 FROM topic
 WHERE id = %s"""
 
+topic_by_title = """SELECT *
+FROM topic
+WHERE title = %s"""
+
 search_by_title = """SELECT *
 FROM topic
 WHERE title ilike %(search_text)s"""

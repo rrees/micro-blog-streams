@@ -10,6 +10,8 @@
 			{% endif %}
             {% if post and post.title %}
             value="{{post.title}}"
+            {% elif default_title %}
+            value="{{default_title}}"
             {% endif %}
             >
 	</div>

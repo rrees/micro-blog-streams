@@ -1,5 +1,7 @@
 import flask
 
+from datetime import datetime
+
 from app.auth_password.decorators import login_required
 from app import repositories, search_forms, models
 
@@ -81,6 +83,22 @@ def post(post_id):
 @login_required
 def new_post():
     return flask.render_template("posts/new.html", title_required=True)
+
+
+@login_required
+def quick_post():
+    quick_posts_topic = repositories.topics.by_title("Quick posts")
+
+    if quick_posts_topic is None:
+        topic_id = repositories.topics.create("Quick posts")
+        quick_posts_topic = repositories.topics.topic(topic_id)
+
+    return flask.render_template(
+        "posts/quick.html",
+        title_required=True,
+        topic=quick_posts_topic,
+        default_title=datetime.now().isoformat(timespec="seconds"),
+    )
 
 
 @login_required
