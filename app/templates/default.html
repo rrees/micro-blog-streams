@@ -14,6 +14,8 @@
             media="print"
             href="{{ url_for('static', filename='print.css') }}"/>
 
+        <script type="module" src="{{ url_for('static', filename='components/FormWrapper.js') }}"></script>
+
         <link rel="manifest" href="/manifest.json" />
 
         {% block additional_scripts %}

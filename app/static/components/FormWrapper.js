@@ -7,6 +7,8 @@ class FormWrapper extends HTMLElement {
 		this.form.addEventListener('submit', this);
 
 		this.statusAttributeName = 'form-submitting';
+
+		this.delay = 500;
 	}
 
 	disable() {
@@ -51,12 +53,10 @@ class FormWrapper extends HTMLElement {
 
 			const data = response;
 
-			console.log(data);
-
 			window.location.href = data.url;
 
 		} finally {
-			this.enable();
+			setTimeout(() => this.enable(), this.delay);
 		}
 	}
 

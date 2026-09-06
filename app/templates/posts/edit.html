@@ -9,7 +9,9 @@
 
 	{% include "posts/fragments/post-actions.html" %}
 
+    <form-wrapper>
     <form method="POST" action="{{url_for('edit_post_form', post_id=post.id)}}">
     {% include 'posts/fragments/post-form.html' %}
 	</form>
+	</form-wrapper>
 {% endblock %}

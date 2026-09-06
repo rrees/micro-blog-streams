@@ -3,6 +3,10 @@ blockquote {
 	padding-left: 1rem;
 }
 
+*[form-submitting] form {
+	opacity: 0.2;
+}
+
 .page-content {
 	max-width: 100ch;
 	margin-inline: auto;

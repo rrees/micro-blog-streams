@@ -2,16 +2,10 @@
 
 {% block title %}Quick post{% endblock %}
 
-{% block additional_scripts %}
-<script type="module" src="{{url_for('static', filename='components/FormWrapper.js')}}"></script>
-{% endblock %}
-
 {% block content %}
 <div class="container-fluid post-form">
     <h1>Quick post</h1>
 
-    <form-wrapper>
 	{% include 'posts/fragments/quick-post-form.html' %}
-	</form-wrapper>
 </div>
 {% endblock %}
