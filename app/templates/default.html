@@ -14,7 +14,10 @@
             media="print"
             href="{{ url_for('static', filename='print.css') }}"/>
 
-        <script type="module" src="{{ url_for('static', filename='components/FormWrapper.js') }}"></script>
+        <script type="module"
+            src="{{ url_for('static', filename='web-component-loader.js') }}"
+            id="component-loader"
+            data-static-base="{{ url_for('static', filename='') }}"></script>
 
         <link rel="manifest" href="/manifest.json" />
 
@@ -32,4 +35,5 @@
         {% endblock %}
         </div>
     </body>
+
 </html>

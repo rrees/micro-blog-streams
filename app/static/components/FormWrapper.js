@@ -9,6 +9,7 @@ class FormWrapper extends HTMLElement {
 		this.statusAttributeName = 'form-submitting';
 
 		this.delay = 500;
+		this.debug = true;
 	}
 
 	disable() {
@@ -25,17 +26,17 @@ class FormWrapper extends HTMLElement {
 
 
 	handleEvent(event) {
-		console.log(event);
+		//console.log(event);
 		this[`on${event.type}`](event);
 	}
 
 	async onsubmit(event) {
 		event.preventDefault();
 
-		console.log('Form submitting');
+		//console.log('Form submitting');
 
 		if(this.isDisabled()) {
-			console.log('Form disabled')
+			//console.log('Form disabled')
 			return;
 		}
 
@@ -44,7 +45,9 @@ class FormWrapper extends HTMLElement {
 		try {
 			const {action, method} = this.form;
 
-			console.log(action, method)
+			if(this.debug) {
+				console.log(action, method);
+			}
 
 			const response = await fetch(action, {
 				method: method,
@@ -55,7 +58,9 @@ class FormWrapper extends HTMLElement {
 
 			window.location.href = data.url;
 
-		} finally {
+		} catch(error) {
+			console.log(error);
+			
 			setTimeout(() => this.enable(), this.delay);
 		}
 	}
