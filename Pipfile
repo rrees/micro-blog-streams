@@ -3,7 +3,6 @@ name = "pypi"
 url = "https://pypi.org/simple"
 verify_ssl = true
 
-
 [dev-packages]
 nomad = "*"
 bpython = "*"
@@ -13,8 +12,8 @@ gunicorn = "*"
 redis = "*"
 Flask = "*"
 wtforms = "*"
-mistune = "*"
 psycopg = {extras = ["binary"], version = "*"}
+wenmode = "*"
 
 [requires]
 python_version = "3.14"

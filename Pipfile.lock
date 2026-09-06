@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "93d923e01fc6a25b9a11c62c4a62156b9bb1432021378fbb2a6cfdc57f8e4af3"
+            "sha256": "1ea8ed7d31bda800bfb42adc563e029678b90f7e7cc57db4800fa6cacdeac41a"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -161,15 +161,6 @@
             "markers": "python_version >= '3.9'",
             "version": "==3.0.3"
         },
-        "mistune": {
-            "hashes": [
-                "sha256:708487c8a8cdd99c9d90eb3ed4c3ed961246ff78ac82f03418f5183ab70e398a",
-                "sha256:febdc629a3c78616b94393c6580551e0e34cc289987ec6c35ed3f4be42d0eee1"
-            ],
-            "index": "pypi",
-            "markers": "python_version >= '3.8'",
-            "version": "==3.2.0"
-        },
         "psycopg": {
             "extras": [
                 "binary"
@@ -250,6 +241,15 @@
             "index": "pypi",
             "markers": "python_version >= '3.10'",
             "version": "==7.2.1"
+        },
+        "wenmode": {
+            "hashes": [
+                "sha256:06a68774b81d5fffac7b71ee5c3f01ad967eedd11b1ed886a300f8eb46b0b4c0",
+                "sha256:1adecc91d56ffd504943932256f9c82c92c6a8434af725b4b601b9ff88ecffe8"
+            ],
+            "index": "pypi",
+            "markers": "python_version >= '3.10'",
+            "version": "==0.15.0"
         },
         "werkzeug": {
             "hashes": [

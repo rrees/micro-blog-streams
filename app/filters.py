@@ -1,12 +1,13 @@
 import datetime
 
-import mistune
+import wenmode
+from wenmode.plugins import definition_list
 
-markdown_renderer = mistune.create_markdown(plugins=["def_list"])
+markdown_renderer = wenmode.Wenmode(plugins=[definition_list])
 
 
 def markdown(markdown):
-    return markdown_renderer(markdown)
+    return markdown_renderer.render(markdown)
 
 
 def iso_date(a_date):
