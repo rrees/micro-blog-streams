@@ -8,26 +8,35 @@ from app.repositories import posts as posts_repository
 from app.repositories import topics as topics_repository
 
 
+def create_post_from_form(post_form):
+    topic_id = post_form.topic_id.data
+    tags = tag_manager.process(post_form.tags.data)
+
+    url = None
+
+    if post_form.url.data:
+        url = post_form.url.data
+
+    return posts_repository.create(
+        post_form.title.data,
+        post_form.content.data,
+        topic_id=topic_id,
+        tags=tags,
+        url=url,
+    )
+
+
 @login_required
-def new_post():
+def new_post(redirect_to=None):
     new_post_form = forms.Post(flask.request.form)
 
     if new_post_form.validate():
+        create_post_from_form(new_post_form)
+
+        if redirect_to:
+            return flask.redirect(flask.url_for(redirect_to))
+
         topic_id = new_post_form.topic_id.data
-        tags = tag_manager.process(new_post_form.tags.data)
-
-        url = None
-
-        if new_post_form.url.data:
-            url = new_post_form.url.data
-
-        new_post = posts_repository.create(
-            new_post_form.title.data,
-            new_post_form.content.data,
-            topic_id=topic_id,
-            tags=tags,
-            url=url,
-        )
 
         if topic_id:
             return flask.redirect(flask.url_for("topic", topic_id=topic_id))

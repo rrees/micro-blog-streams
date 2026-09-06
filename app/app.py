@@ -77,6 +77,13 @@ routes = [
     ("/posts/new", "new_post", handlers.pages.new_post, ["GET"]),
     ("/posts/quick", "quick_post", handlers.pages.quick_post, ["GET"]),
     ("/forms/post/new", "new_post_form", handlers.forms.new_post, ["POST"]),
+    (
+        "/forms/post/quick",
+        "quick_post_form",
+        handlers.forms.new_post,
+        ["POST"],
+        {"redirect_to": "quick_post"},
+    ),
     ("/post/<post_id>", "post", handlers.pages.post, ["GET"]),
     ("/post/<post_id>/raw", "post_raw", handlers.pages.post_raw, ["GET"]),
     ("/post/<post_id>/edit", "edit_post", handlers.pages.edit_post, ["GET"]),
@@ -122,8 +129,14 @@ routes = (
     + handlers.search.search_routes
 )
 
-for path, endpoint, handler, methods in routes:
-    app.add_url_rule(path, endpoint, handler, methods=methods)
+for path, endpoint, handler, methods, *defaults in routes:
+    app.add_url_rule(
+        path,
+        endpoint,
+        handler,
+        methods=methods,
+        defaults=defaults[0] if defaults else None,
+    )
 
 for name, custom_filter in custom_filters:
     app.jinja_env.filters[name] = custom_filter
