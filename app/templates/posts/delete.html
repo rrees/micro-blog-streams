@@ -1,0 +1,24 @@
+{% extends 'default.html' %}
+
+{% block title %}Delete post {{post.title}}{% endblock %}
+
+{% block content %}
+<div class="container-lg">
+    <h1>{{post.title}}</h1>
+
+    <p>Are you sure you want to delete the post <em>{{post.title}}</em>?</p>
+
+    <div class="card mb-3 p-3">
+        <h2 class="mb-2">Post content</h2>
+
+        <div class="card-body post-content">
+            {{post.content | markdown | safe}}
+        </div>
+    </div>
+
+    <form method="POST" action="{{url_for('delete_post_form', post_id=post.id)}}">
+
+    	<button type="submit" class="btn btn-danger">Delete</button>
+    </form>
+</div>
+{% endblock %}

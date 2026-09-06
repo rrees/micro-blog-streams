@@ -126,6 +126,18 @@ def delete_topic(topic_id):
 
 
 @login_required
+def delete_post(post_id):
+    post_topics = topics_repository.for_post(post_id)
+
+    posts_repository.delete(post_id)
+
+    if len(post_topics) == 1:
+        return flask.redirect(flask.url_for("topic", topic_id=post_topics[0].id))
+
+    return flask.redirect(flask.url_for("recent"))
+
+
+@login_required
 def archive_topic(topic_id):
     return topic_active_status(topic_id, False)
 

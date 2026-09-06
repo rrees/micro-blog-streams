@@ -130,6 +130,13 @@ def delete_topic(topic_id):
 
 
 @login_required
+def delete_post(post_id):
+    return flask.render_template(
+        "posts/delete.html", post=repositories.posts.post(post_id)
+    )
+
+
+@login_required
 def edit_post(post_id):
     return flask.render_template(
         "posts/edit.html", post=repositories.posts.post(post_id)

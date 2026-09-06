@@ -93,6 +93,13 @@ routes = [
         handlers.forms.edit_post,
         ["POST"],
     ),
+    ("/post/<post_id>/delete", "delete_post", handlers.pages.delete_post, ["GET"]),
+    (
+        "/forms/post/delete/<post_id>",
+        "delete_post_form",
+        handlers.forms.delete_post,
+        ["POST"],
+    ),
     (
         "/post/<post_id>/topics/edit",
         "edit_post_topics",
